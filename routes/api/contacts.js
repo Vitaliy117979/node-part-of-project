@@ -7,10 +7,8 @@ const {
   putContact,
   deleteContact,
 } = require("../../controllers");
-const schemas = require("../schemas");
-const isValidId = require("../middleware/isValidId");
-const authenticate = require("../middleware/authenticate");
-const validate = require("../middleware/validation");
+const { isValidId, authenticate, validate } = require("../../middleware");
+const schemas = require("../../schemas");
 const router = express.Router();
 
 router.use(authenticate);

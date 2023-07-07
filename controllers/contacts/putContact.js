@@ -1,7 +1,6 @@
 const Contact = require("../../models/contact");
 
 async function putContact(req, res, next) {
-  try {
     const id = req.params.contactId;
     const { name, email, phone } = req.body;
     const newData = { id, name, email, phone };
@@ -13,10 +12,7 @@ async function putContact(req, res, next) {
       return res.status(404).json({ message: "Not found" });
     }
     res.status(200).json(result);
-  } catch (error) {
-    console.log(error);
-    next(error);
-  }
+
 }
 
 module.exports = putContact;

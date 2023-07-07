@@ -10,16 +10,17 @@ const { login } = require("./auth/userLogin");
 const { register } = require("./auth/userRegister");
 const getCurrent = require("./auth/getCurrent")
 const logout = require("./auth/logout")
+const {ctrlWrapper} = require("../helpers")
 module.exports = {
-  getContactsList,
-  getContactById,
-  putContactFildFavorite,
-  postContact,
-  putContact,
-  deleteContact,
-  register,
-  login,
-  getCurrent,
-  logout,
-  updataAvatar
+  getContactsList: ctrlWrapper(getContactsList),
+  getContactById: ctrlWrapper(getContactById),
+  putContactFildFavorite: ctrlWrapper(putContactFildFavorite),
+  postContact: ctrlWrapper(postContact),
+  putContact: ctrlWrapper(putContact),
+  deleteContact: ctrlWrapper(deleteContact),
+  register: ctrlWrapper(register),
+  login: ctrlWrapper(login),
+  getCurrent: ctrlWrapper(getCurrent),
+  logout: ctrlWrapper(logout),
+  updataAvatar: ctrlWrapper(updataAvatar)
 };
