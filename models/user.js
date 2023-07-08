@@ -23,6 +23,7 @@ const userSchema = new Schema(
 );
 
 userSchema.post("save", handleMongooseError)
+
 const User = model("user", userSchema)
 
 module.exports = User
