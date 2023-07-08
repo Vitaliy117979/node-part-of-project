@@ -2,31 +2,29 @@ const User = require("../../models/user");
 
 const { sendEmail } = require("../../helpers");
 
-const updateSubscription = async( req, res ) => {
-        const { subscription, email } = req.body;
-        const { _id } = req.user;
+const updateSubscription = async (req, res) => {
+  const { subscription, email } = req.body;
+  const { _id } = req.user;
 
-        await User.findByIdAndUpdate(
-                _id,
-                {subscription},
-                {new:true},
-        );
-        res.json ({subscription});
+  await User.findByIdAndUpdate(_id, { subscription }, { new: true });
+  res.json({ subscription });
 
-        try {
-                const subscribedEmail = {to: email};
-                if (subscription === "subscribe") {
-                        subscribedEmail.subject = "You are subscribed to our api";
-                        subscribedEmail.html = "Congratulations. You are subscribed to our service So Yummy!";
-                } else {
-                        subscribedEmail.subject = "You are unsubscribed to our api";
-                        subscribedEmail.html = "You are unsubscribed to our service So Yummy. We hope you will be back soon";
-                }
+  try {
+    const subscribedEmail = { to: email };
+    if (subscription === "subscribe") {
+      subscribedEmail.subject = "You are subscribed to our api";
+      subscribedEmail.html =
+        "Congratulations. You are subscribed to our service So Yummy!";
+    } else {
+      subscribedEmail.subject = "You are unsubscribed to our api";
+      subscribedEmail.html =
+        "You are unsubscribed to our service So Yummy. We hope you will be back soon";
+    }
 
-                await sendEmail (subscribedEmail);
-        } catch (error) {
-                console.error(error);
-        }
+    await sendEmail(subscribedEmail);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 module.exports = { updateSubscription };
