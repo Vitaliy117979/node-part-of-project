@@ -11,7 +11,7 @@ const { register } = require("./auth/userRegister");
 const getCurrent = require("./auth/getCurrent")
 const logout = require("./auth/logout")
 const {ctrlWrapper} = require("../helpers")
-const {updateSubscription} = require("./subscribe")
+const {updateSubscription} = require("./subscribe/subscribe")
 
 module.exports = {
   getContactsList: ctrlWrapper(getContactsList),
