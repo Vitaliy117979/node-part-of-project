@@ -5,11 +5,6 @@ const validate = schema => {
     const func = (req, res, next)=> {
         const { error } = schema.validate(req.body);
         if (Object.keys(req.body).length === 0 || typeof req.body !== "object") {
-                console.log("req.params",req.route.path);
-                if (req.route.path === '/:contactId/favorite' ) {
-                return res.status(400).json({ "message": "missing field favorite" });
-
-                }
                 return res.status(400).json({ "message": "missing fields" })
               }
 
@@ -32,4 +27,3 @@ const validate = schema => {
 }
 
 module.exports = validate;
-

@@ -11,7 +11,9 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: async (req, file) => {
+   console.log(req.body.name);
     // Determine the folder based on file properties or request data
+    if (req.body.name) {
     let folder;
     if (file.fieldname === "avatarURL") {
       folder = "avatars";
@@ -33,6 +35,8 @@ const storage = new CloudinaryStorage({
         { width: 700, height: 700 },
       ],
     };
+}
+return {};
   },
 });
 

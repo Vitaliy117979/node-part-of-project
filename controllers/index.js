@@ -5,7 +5,7 @@ const putContactFildFavorite = require("./contacts/putContactFildFavorite");
 const postContact = require("./contacts/postContact");
 const putContact = require("./contacts/putContact");
 const deleteContact = require("./contacts/deleteContact");
-const {updataAvatar} = require("./auth/updataAvatar")
+const {updateUserInformation} = require("./auth/updateUserInformation")
 const { login } = require("./auth/userLogin");
 const { register } = require("./auth/userRegister");
 const getCurrent = require("./auth/getCurrent")
@@ -22,5 +22,5 @@ module.exports = {
   login: ctrlWrapper(login),
   getCurrent: ctrlWrapper(getCurrent),
   logout: ctrlWrapper(logout),
-  updataAvatar: ctrlWrapper(updataAvatar)
+  updateUserInformation: ctrlWrapper(updateUserInformation)
 };
