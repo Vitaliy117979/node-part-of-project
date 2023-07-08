@@ -6,11 +6,14 @@ const {
 
 const { registerSchema, loginSchema, updateUserSchema } = require("./users");
 
+const { updateSubscriptionSchema } = require("./subscribe")
+
 module.exports = {
   createContact,
   updateContact,
   updateFavoriteSchema,
   registerSchema,
   loginSchema,
-  updateUserSchema
+  updateUserSchema,
+  updateSubscriptionSchema
 };
