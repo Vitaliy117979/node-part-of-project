@@ -1,9 +1,15 @@
+const { HttpError } = require("../../helpers");
 const User = require("../../models/user")
 
 const logout = async(req, res, next) => {
-        const {_id} = req.user  
-        await User.findByIdAndUpdate(_id, {token: ""})
-        res.status(204).json("No Content")
+    const { id } = req.user;
+
+    const user = await User.findById(id);
+  
+    if (!user) throw HttpError(401);
+  
+    await User.findByIdAndUpdate(id, { token: "" });
+    res.status(204).send();
       
 }
 

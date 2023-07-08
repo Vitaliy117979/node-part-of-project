@@ -1,10 +1,10 @@
 const getCurrent = async( req, res, next) => {
 
-const {email, subscription} = req.user  
-console.log(subscription);  
+const {email, name} = req.user  
+
 res.json({
     email,
-    subscription
+    name
 })
 
 }

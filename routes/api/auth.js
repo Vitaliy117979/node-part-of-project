@@ -12,7 +12,7 @@ router.post("/register", validate(schemas.registerSchema), register);
 router.post("/login", validate(schemas.loginSchema), login);
 router.get("/current", authenticate, getCurrent)
 router.post("/logout", authenticate, logout)
-router.patch("/avatars", upload.single("avatarURL") ,authenticate, updateUserInformation)
+router.patch("/updateUser", upload.single("avatarURL") ,authenticate, updateUserInformation)
 
 
 
