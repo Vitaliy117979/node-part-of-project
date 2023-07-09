@@ -16,6 +16,11 @@ const userSchema = new Schema(
       required: [true, "Name is required"],
 
     },
+    subscription: {
+      type: String,
+      enum: ["subscribe", "unsubscribe"],
+      default: "unsubscribe",
+    },
     avatarURL: String,
     token: String,
   },
