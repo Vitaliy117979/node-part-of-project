@@ -4,7 +4,10 @@ const cors = require('cors')
 require("dotenv").config()
 const contactsRouter = require('./routes/api/contacts')
 const authRouter = require('./routes/api/auth')
+const subscribeRouter = require("./routes/api/subscribe")
 
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
 
 const app = express()
 
@@ -18,7 +21,9 @@ app.use(express.static("public"))
 
 app.use('/api/contacts', contactsRouter)
 app.use('/users',  authRouter)
+app.use('/api/subscribe', subscribeRouter)
 
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' })
