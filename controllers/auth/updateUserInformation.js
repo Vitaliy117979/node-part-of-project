@@ -4,7 +4,7 @@ const updateUserInformation = async (req, res, next) => {
   const { name } = req.body;
   console.log(req.body);
   const { _id } = req.user;
-  if(req.file){
+  if (req.file) {
     if (!name) {
       return res.status(400).json({ message: "Name field cannot be empty." });
     }
@@ -18,11 +18,10 @@ const updateUserInformation = async (req, res, next) => {
       avatarURL: filename,
     };
     await User.findByIdAndUpdate(_id, { $set: updates });
-   return res.status(201).json({
-      name,
+    return res.status(201).json({
+      name: name,
       avatarURL: updates.avatarURL,
     });
-
   }
 
   if (!name) {
