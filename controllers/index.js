@@ -9,6 +9,7 @@ const {ctrlWrapper} = require("../helpers")
 const {updateSubscription} = require("./subscribe/subscribe")
 
 module.exports = {
+  
   register: ctrlWrapper(register),
   login: ctrlWrapper(login),
   getCurrent: ctrlWrapper(getCurrent),
