@@ -4,6 +4,7 @@ const registerSchema = Joi.object().keys({
   email: Joi.string().regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/).required(),
   password: Joi.string().min(8).required(),
   name: Joi.string().min(2).required(),
+  subscription: Joi.string(),
 });
 
 const loginSchema = Joi.object().keys({
