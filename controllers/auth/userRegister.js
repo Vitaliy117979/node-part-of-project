@@ -10,7 +10,7 @@ const register = async (req, res, next) => {
   const { email, name, password } = req.body;
   const user = await User.findOne({ email });
   if (user) {
-    throw HttpError(409, "Email is use");
+    throw HttpError(409, "Provided email already exists");
   }
 
   const createHashPassword = await bcrypt.hash(password, 10);
@@ -28,6 +28,7 @@ const register = async (req, res, next) => {
   await User.findByIdAndUpdate(existingUser._id, { token });
 
   res.status(201).json({
+    message: "Successful operation",
     token,
     user: {
       email: newUser.email,
