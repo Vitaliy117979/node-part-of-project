@@ -11,7 +11,10 @@
   },
   "consumes": ["application/json"],
   "produces": ["application/json"],
-  "servers": [{ "url": "http://localhost:3000" }],
+  "servers": [
+    { "url": "http://localhost:3030" },
+    { "url": "https://so-yummy-backend-hg4e.onrender.com/api" }
+  ],
   "tags": [
     {
       "name": "Auth",
@@ -48,11 +51,48 @@
             }
           },
           "400": {
-            "description": "Bad request (invalid request body)",
+            "description": "missing fields",
             "content": {}
           },
           "409": {
             "description": "Provided email already exists",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User login",
+        "requestBody": {
+          "description": "Login object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginSchema"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful login",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "missing fields",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized (email or password is wrong)",
             "content": {}
           }
         }
@@ -85,15 +125,65 @@
       "RegistrationResponse": {
         "type": "object",
         "properties": {
+          "token": {
+            "type": "string",
+            "description": "Authentication token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWE5NjQ0ZWJlYzlmMzc0NzY1MDEzZiIsImlhdCI6MTY4ODkwMTE4OCwiZXhwIjoxNjg4OTgzOTg4fQ.o2KLsNNVlFVi-pkVtvv5CdZ6QK70ooepLMkaijWrLoA"
+          },
+          "user": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "description": "User's email",
+                "format": "email"
+              },
+              "name": {
+                "type": "string",
+                "description": "User's name",
+                "example": "Bogdan"
+              }
+            }
+          }
+        }
+      },
+      "LoginSchema": {
+        "type": "object",
+        "properties": {
           "email": {
             "type": "string",
             "description": "User's email",
             "format": "email"
           },
-          "name": {
+          "password": {
             "type": "string",
-            "description": "User's name",
-            "example": "Bogdan"
+            "description": "User's password",
+            "example": "qwerty123"
+          }
+        }
+      },
+      "AuthResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Authentication token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWE5NjQ0ZWJlYzlmMzc0NzY1MDEzZiIsImlhdCI6MTY4ODkwMTE4OCwiZXhwIjoxNjg4OTgzOTg4fQ.o2KLsNNVlFVi-pkVtvv5CdZ6QK70ooepLMkaijWrLoA"
+          },
+          "user": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "description": "User's email",
+                "format": "email"
+              },
+              "name": {
+                "type": "string",
+                "description": "User's name",
+                "example": "Bogdan"
+              }
+            }
           }
         }
       }

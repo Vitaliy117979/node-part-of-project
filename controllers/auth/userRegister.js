@@ -29,6 +29,7 @@ const register = async (req, res, next) => {
   await User.findByIdAndUpdate(existingUser._id, { token });
 
   res.status(201).json({
+    message: "Successful operation",
     token,
     user: {
       email: newUser.email,
