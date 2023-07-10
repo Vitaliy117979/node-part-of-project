@@ -16,11 +16,9 @@ const ingredientSchema = new Schema(
         required: true,
       },
   },
-  { versionKey: false, timestamps: true }
+  {  timestamps: true }
 );
 
 ingredientSchema.post("save", handleMongooseError)
-
 const Ingredient = model("ingredient", ingredientSchema)
-
 module.exports = Ingredient

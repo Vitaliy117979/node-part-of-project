@@ -43,24 +43,26 @@ const recipeSchema = new Schema(
       type: [String],
       required: true,
     },
-    ingredients: [
-        {
-          ingredient: {
-            type: Schema.Types.ObjectId,
-            ref: "ingredient",
-            required: true,
+    ingredients: {
+        type: [
+          {
+            id: {
+              type: Schema.Types.ObjectId,
+              ref: "ingredient",
+            },
+            measure: {
+              type: String,
+              required: true,
+            },
           },
-          measure: {
-            type: String,
-            required: true,
-          },
-        },
-      ],
+        ],
+        required: true,
+      },
   },
   { timestamps: true }
 );
 
 recipeSchema.post("save", handleMongooseError);
-const Recipe = model("Recipe", recipeSchema);
+const Recipe = model("recipe", recipeSchema);
 
 module.exports = Recipe;
