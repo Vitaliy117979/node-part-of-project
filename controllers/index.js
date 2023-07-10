@@ -8,6 +8,8 @@ const logout = require("./auth/logout")
 const {ctrlWrapper} = require("../helpers")
 const {updateSubscription} = require("./subscribe/subscribe")
 
+
+const getRecipesList = require("./recipes/getRecipes")
 module.exports = {
   
   register: ctrlWrapper(register),
@@ -15,5 +17,6 @@ module.exports = {
   getCurrent: ctrlWrapper(getCurrent),
   logout: ctrlWrapper(logout),
   updateUserInformation: ctrlWrapper(updateUserInformation),
-  updateSubscription: ctrlWrapper(updateSubscription)
+  updateSubscription: ctrlWrapper(updateSubscription),
+  getRecipesList: ctrlWrapper(getRecipesList),
 };
