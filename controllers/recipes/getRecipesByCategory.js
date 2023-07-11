@@ -3,6 +3,7 @@ const { Ingredient } = require("../../models/ingredient");
 
 async function getRecipesByCategory(req, res) {
   const { category } = req.params;
+  console.log(req.params);
   if (category === "") {
     return res.status(400).json({ message: "Category cannot be empty" });
   }
@@ -12,7 +13,6 @@ async function getRecipesByCategory(req, res) {
     null,
     { limit }
     ).populate("ingredients.id");
-    console.log(list.length);
   if (list.length === 0) {
    return res.status(400).json({ massage: "This category does not exist" });
   }

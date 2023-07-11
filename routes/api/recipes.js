@@ -1,5 +1,5 @@
 const express = require("express");
-const { authenticate } = require("../../middleware");
+const { authenticate, isValidId } = require("../../middleware");
 const router = express.Router();
 const {
   getRecipesList,
@@ -15,6 +15,6 @@ router.get("/", getRecipesList);
 router.get("/category/:category", getRecipesByCategory);
 router.get("/main-page", getRecipesForMainPage);
 router.get("/category-list", getCategoryList);
-router.get("/:id", getRecipesById);
+router.get("/:id", isValidId, getRecipesById);
 
 module.exports = router;
