@@ -41,21 +41,16 @@ const recipeSchema = new Schema(
       type: String,
       required: true,
     },
-    ingredients: {
-      type: [
-        {
-          id: {
+    ingredients: [
+      {
+        _id: false,
+        id: {
             type: Schema.Types.ObjectId,
-            ref: "ingredient",
-          },
-          measure: {
-            type: String,
-            required: true,
-          },
+          ref: "ingredient",
         },
-      ],
-      required: true,
-    },
+        measure: { type: String },
+      },
+    ],
     thumb: {
       type: String,
       required: true,
@@ -78,6 +73,4 @@ const recipeSchema = new Schema(
 
 const Recipe = model("recipe", recipeSchema);
 
-module.exports = {
-  Recipe,
-};
+module.exports = Recipe

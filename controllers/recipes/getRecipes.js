@@ -1,4 +1,6 @@
-const {Recipe} = require("../../models/recipe");
+const Recipe = require("../../models/recipe");
+const {Ingredient} = require("../../models/ingredient"); 
+// імпортувати в файл модель Ingredient
 console.log(Recipe);
 async function getRecipesList(req, res) {
   // console.log(req.user);

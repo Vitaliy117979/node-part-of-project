@@ -1,34 +1,17 @@
-const {Recipe} = require("../../models/recipe");
-
-const categoriesList = [
-  "Beef",
-  "Breakfast",
-  "Chicken",
-  "Dessert",
-  "Goat",
-  "Lamb",
-  "Miscellaneous",
-  "Pasta",
-  "Pork",
-  "Seafood",
-  "Side",
-  "Starter",
-  "Vegan",
-  "Vegetarian",
-];
+const Recipe = require("../../models/recipe");
+const { Ingredient } = require("../../models/ingredient");
 
 async function getRecipesByCategory(req, res) {
   const { category } = req.params;
-  const found = categoriesList.includes(category);
-  if (!found) {
-    res.status(400).json({ massage: "This category does not exist" });
-  }
-  const { page = 1, limit = 8 } = req.query;
-  const skip = (page - 1) * limit;
 
-  const list = await Recipe.find({ category }, null, { skip, limit });
+  const { limit = 8 } = req.query;
+  const list = await Recipe.find(
+    { title: { $regex: category, $options: "i" } },
+    null,
+    { limit }
+  ).populate("ingredients.id");
   if (list.length === 0) {
-    res.status(400).json({ massage: "This page does not exist" });
+    res.status(400).json({ massage: "This category does not exist" });
   }
   console.log(list);
   res.status(200).json(list);
