@@ -58,6 +58,7 @@ const recipeSchema = new Schema(
         ],
         required: true,
       },
+
   },
   { timestamps: true }
 );
