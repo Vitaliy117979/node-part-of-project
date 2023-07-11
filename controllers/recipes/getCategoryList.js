@@ -1,4 +1,4 @@
-const Category = require("../../models/category")
+const {Category} = require("../../models/category")
 async function getCategoryList(req, res, ) {
     const list = await Category.find()
     console.log(list);

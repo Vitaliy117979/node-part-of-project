@@ -25,10 +25,10 @@ app.use(express.static("public"));
 
 
 
-app.use('/api/recipes', recipesRouter)
 
 
 app.use("/api/users", authRouter);
+app.use('/api/recipes', recipesRouter)
 app.use("/api/subscribe", subscribeRouter);
 app.use("/api/search", searchByTitleRouter);
 
