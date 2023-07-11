@@ -21,6 +21,10 @@
     {
       "name": "Auth",
       "description": "Authorization endpoints"
+    },
+    {
+      "name": "Subscribe",
+      "description": "Subscribe endpoints"
     }
   ],
 
@@ -95,6 +99,41 @@
           },
           "401": {
             "description": "Unauthorized (email or password is wrong)",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/subscribe": {
+      "post": {
+        "tags": ["Subscribe"],
+        "summary": "User subscribe service",
+        "parameters": [],
+        "security": [{"Bearer": []}],
+        "requestBody": {
+          "description": "Subscribe's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/subscribeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Subscribe successfully changed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/subscribeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unsuccessful request",
             "content": {}
           }
         }
@@ -186,6 +225,33 @@
                 "example": "Bogdan"
               }
             }
+          }
+        }
+      },
+      "subscribeRequest": {
+        "type": "object",
+        "properties": {
+          "subscription": {
+            "type": "string",
+            "description": "Subscription request",
+            "example": "Subscribe for us",
+            "enam": ["subscribe", "unsubscribe"]
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          }
+        }
+      },
+      "subscribeResponse": {
+        "type": "object",
+        "properties": {
+          "subscription": {
+            "type": "string",
+            "description": "Subscription responce",
+            "example": "Subscribe for us",
+            "enam": ["subscribe", "unsubscribe"]
           }
         }
       }
