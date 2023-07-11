@@ -10,6 +10,8 @@ const {updateSubscription} = require("./subscribe/subscribe")
 
 
 const getRecipesList = require("./recipes/getRecipes")
+const getCategoryList = require("./recipes/getCategoryList")
+const getRecipesByCategory = require("./recipes/getRecipesByCategory")
 module.exports = {
   
   register: ctrlWrapper(register),
@@ -19,4 +21,6 @@ module.exports = {
   updateUserInformation: ctrlWrapper(updateUserInformation),
   updateSubscription: ctrlWrapper(updateSubscription),
   getRecipesList: ctrlWrapper(getRecipesList),
+  getCategoryList: ctrlWrapper(getCategoryList),
+  getRecipesByCategory: ctrlWrapper(getRecipesByCategory),
 };
