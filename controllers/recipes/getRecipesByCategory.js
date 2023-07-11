@@ -6,14 +6,15 @@ async function getRecipesByCategory(req, res) {
 
   const { limit = 8 } = req.query;
   const list = await Recipe.find(
-    { title: { $regex: category, $options: "i" } },
+    { category: { $regex: category, $options: "i" } },
     null,
     { limit }
-  ).populate("ingredients.id");
+    ).populate("ingredients.id");
+    console.log(list.length);
   if (list.length === 0) {
-    res.status(400).json({ massage: "This category does not exist" });
+   return res.status(400).json({ massage: "This category does not exist" });
   }
-  console.log(list);
+
   res.status(200).json(list);
 }
 module.exports = getRecipesByCategory;
