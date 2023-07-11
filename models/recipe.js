@@ -1,6 +1,4 @@
 const { Schema, model } = require("mongoose");
-const { handleMongooseError } = require("../helpers");
-
 const recipeSchema = new Schema(
   {
     title: {
@@ -9,6 +7,22 @@ const recipeSchema = new Schema(
     },
     category: {
       type: String,
+      enum: [
+        "Beef",
+        "Breakfast",
+        "Chicken",
+        "Dessert",
+        "Goat",
+        "Lamb",
+        "Miscellaneous",
+        "Pasta",
+        "Pork",
+        "Seafood",
+        "Side",
+        "Starter",
+        "Vegan",
+        "Vegetarian",
+      ],
       required: true,
     },
     area: {
@@ -23,15 +37,25 @@ const recipeSchema = new Schema(
       type: String,
       required: true,
     },
+    time: {
+      type: String,
+      required: true,
+    },
+    ingredients: [
+      {
+        _id: false,
+        id: {
+            type: Schema.Types.ObjectId,
+          ref: "ingredient",
+        },
+        measure: { type: String },
+      },
+    ],
     thumb: {
       type: String,
       required: true,
     },
     preview: {
-      type: String,
-      required: true,
-    },
-    time: {
       type: String,
       required: true,
     },
@@ -43,26 +67,10 @@ const recipeSchema = new Schema(
       type: [String],
       required: true,
     },
-    ingredients: {
-      type: [
-        {
-          id: {
-            type: Schema.Types.ObjectId,
-            ref: "ingredient",
-          },
-          measure: {
-            type: String,
-            required: true,
-          },
-        },
-      ],
-      required: true,
-    },
   },
   { timestamps: true }
 );
 
-recipeSchema.post("save", handleMongooseError);
 const Recipe = model("recipe", recipeSchema);
 
-module.exports = Recipe;
+module.exports = Recipe

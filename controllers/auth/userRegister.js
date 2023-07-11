@@ -7,7 +7,7 @@ require("dotenv").config();
 const { SECRET_KEY } = process.env;
 
 const register = async (req, res, next) => {
-  const { email, name, password } = req.body;
+  const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (user) {
     throw HttpError(409, "Provided email already exists");
