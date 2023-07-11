@@ -44,20 +44,21 @@ const recipeSchema = new Schema(
       required: true,
     },
     ingredients: {
-      type: [
-        {
-          id: {
-            type: Schema.Types.ObjectId,
-            ref: "ingredient",
+        type: [
+          {
+            id: {
+              type: Schema.Types.ObjectId,
+              ref: "ingredient",
+            },
+            measure: {
+              type: String,
+              required: true,
+            },
           },
-          measure: {
-            type: String,
-            required: true,
-          },
-        },
-      ],
-      required: true,
-    },
+        ],
+        required: true,
+      },
+
   },
   { timestamps: true }
 );
