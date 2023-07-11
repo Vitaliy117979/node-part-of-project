@@ -1,5 +1,4 @@
-const Recipe = require("../../models/recipe");
-const Category = require("../../models/category");
+const {Recipe} = require("../../models/recipe");
 
 const categoriesList = [
   "Beef",
@@ -29,7 +28,7 @@ async function getRecipesByCategory(req, res) {
 
   const list = await Recipe.find({ category }, null, { skip, limit });
   if (list.length === 0) {
-    res.status(400).json({ massage: "This category does not exist" });
+    res.status(400).json({ massage: "This page does not exist" });
   }
   console.log(list);
   res.status(200).json(list);

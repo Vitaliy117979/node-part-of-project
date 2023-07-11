@@ -1,24 +1,25 @@
-
 const { Schema, model } = require("mongoose");
-const handleMongooseError = require("../helpers/handleMongooseError");
-const ingredientSchema = new Schema(
+
+const ingredientSchema = Schema(
   {
     name: {
       type: String,
       required: true,
-    },  
+    },
     desc: {
-        type: String,
-        required: true,
-      },    
-      img: {
-        type: String,
-        required: true,
-      },
+      type: String,
+      required: true,
+    },
+    img: {
+      type: String,
+      required: true,
+    },
   },
-  {  timestamps: true }
+  { timestamps: true }
 );
 
-ingredientSchema.post("save", handleMongooseError)
-const Ingredient = model("ingredient", ingredientSchema)
-module.exports = Ingredient
+const Ingredient = model("ingredient", ingredientSchema);
+
+module.exports = { 
+  Ingredient,
+};
