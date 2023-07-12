@@ -45,7 +45,7 @@ const recipeSchema = new Schema(
       {
         _id: false,
         id: {
-            type: Schema.Types.ObjectId,
+            type: String,
           ref: "ingredient",
         },
         measure: { type: String },
@@ -67,6 +67,10 @@ const recipeSchema = new Schema(
       type: [String],
       required: true,
     },
+    popularity: {
+      type: Number,
+      required: true,
+    }
   },
   { timestamps: true }
 );

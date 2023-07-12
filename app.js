@@ -27,7 +27,7 @@ app.use("/api/users", authRouter);
 app.use('/api/recipes', recipesRouter)
 app.use("/api/subscribe", subscribeRouter);
 app.use("/api/search", searchByTitleRouter);
-app.use("/api/ingredients/list", ingredientsListRouter);
+app.use("/api/ingredients", ingredientsListRouter);
 
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
