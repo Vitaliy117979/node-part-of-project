@@ -22,11 +22,9 @@ const searchByIngredient = async (req, res, next) => {
       },
     }, null, {skip, limit}).populate("ingredients.id");
 
-    res.status(200).json({
-        keyword,
-        ingredient,
+    res.status(200).json(
         recipes 
-    });
+    );
   } else {
     res
       .status(200)
