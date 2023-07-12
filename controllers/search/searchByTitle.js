@@ -12,7 +12,7 @@ console.log(req.query);
 
   const result = await Recipe.find({
     title: { $regex: `^${keyword}`, $options: "i" },
-  }, null, {skip, limit})
+  }, null, {skip, limit}).populate("ingredients.id");
 
   if (result.length === 0) {
     res.status(200).json({ message: "No recipes was found for your request" });
