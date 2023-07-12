@@ -1,9 +1,9 @@
-const express = require("express");
-const { authenticate } = require("../../middleware");
-const router = express.Router();
+// const express = require("express");
+// const { authenticate } = require("../../middleware");
+// const router = express.Router();
 
-const {getIngredients} = require('../../controllers');
+// const {findRecipesbyIngredient} = require('../../controllers');
 
-router.get("/", authenticate, getIngredients);
+// router.get("/", authenticate, findRecipesbyIngredient);
 
-module.exports = router;
+// module.exports = router;
