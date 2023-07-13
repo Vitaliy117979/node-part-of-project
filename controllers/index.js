@@ -9,12 +9,13 @@ const { ctrlWrapper } = require("../helpers");
 const { updateSubscription } = require("./subscribe/subscribe");
 const { searchByTitle } = require("./search/searchByTitle");
 
+const getRecipesList = require("./recipes/getRecipes");
+const getCategoryList = require("./recipes/getCategoryList");
+const getRecipesByCategory = require("./recipes/getRecipesByCategory");
+const getRecipesById = require("./recipes/getRecipeById");
+const { getRecipesForMainPage } = require("./recipes/getRecipesForMain");
+const { createRecipes } = require("./recipes/createRecipes");
 
-const getRecipesList = require("./recipes/getRecipes")
-const getCategoryList = require("./recipes/getCategoryList")
-const getRecipesByCategory = require("./recipes/getRecipesByCategory")
-const getRecipesById = require("./recipes/getRecipeById")
-const {getRecipesForMainPage} = require("./recipes/getRecipesForMain")
 module.exports = {
   searchByTitle: ctrlWrapper(searchByTitle),
   register: ctrlWrapper(register),
@@ -29,4 +30,5 @@ module.exports = {
   getRecipesByCategory: ctrlWrapper(getRecipesByCategory),
   getRecipesById: ctrlWrapper(getRecipesById),
   getRecipesForMainPage: ctrlWrapper(getRecipesForMainPage),
+  createRecipes: ctrlWrapper(createRecipes),
 };

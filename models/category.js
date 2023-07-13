@@ -10,8 +10,8 @@ const categorySchema = new Schema(
   { versionKey: false, timestamps: true }
 );
 
-// categorySchema.post("save", handleMongooseError)
+// categorySchema.post("save", handleMongooseError);
 
-const Category = model("category", categorySchema)
+const Category = model("category", categorySchema);
 
-module.exports = Category
+module.exports = Category;
