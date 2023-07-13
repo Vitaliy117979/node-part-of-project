@@ -1,6 +1,5 @@
 const Recipe = require("../../models/recipe");
 const { Ingredient } = require("../../models/ingredient");
-const mongoose = require("mongoose");
 const searchByIngredient = async (req, res, next) => {
   const keyword = req.query.keyword;
   const {page = 1, limit = 8} = req.query;
@@ -9,18 +8,19 @@ const searchByIngredient = async (req, res, next) => {
     return res.status(400).json({ message: "No ingredient name specified" });
   }
 
-  const ingredient = await Ingredient.findOne({
+  const ingredient = await Ingredient.find({
     name: { $regex: `^${keyword}`, $options: "i" },
   });
 
   if (ingredient) {
-    const recipes = await Recipe.find({
-      ingredients: {
-        $elemMatch: {
-          id: new mongoose.Types.ObjectId(ingredient.id),
-        },
+    const ingredientIds = ingredient.map((item) => item._id);
+    const recipes = await Recipe.find(
+      {
+        "ingredients.id": { $in: ingredientIds }, 
       },
-    }, null, {skip, limit}).populate("ingredients.id");
+      null,
+      { skip, limit }
+    ).populate("ingredients.id");
 
     res.status(200).json(
         recipes 
