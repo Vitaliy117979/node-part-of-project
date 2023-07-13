@@ -2,24 +2,23 @@ const express = require("express");
 const router = express.Router();
 const { authenticate, validate, isValidId } = require("../../middleware");
 const { getShoppingList, addItemToShoppingList, deleteItemFromShoppingList } = require("../../controllers");
-const schemas = require("../../schemas");
+const { productSchema } = require("../../models/product");
+
+router.use(authenticate);
 
 router.get(
         "/", 
-        authenticate, 
         getShoppingList
 );
 
 router.post(
         "/", 
-        authenticate, 
-        validate(schemas.shoppingSchema), 
+        validate(productSchema), 
         addItemToShoppingList
 );
 
 router.delete(
         "/:id",
-        authenticate,
         isValidId,
         deleteItemFromShoppingList
 );
