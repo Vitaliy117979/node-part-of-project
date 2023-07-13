@@ -3,11 +3,10 @@ const { Ingredient } = require("../../models/ingredient");
 
 async function getRecipesByCategory(req, res) {
   const { category } = req.params;
-  console.log(req.params);
+  const { limit = 8 } = req.query;
   if (category === "") {
     return res.status(400).json({ message: "Category cannot be empty" });
   }
-  const { limit = 8 } = req.query;
   const list = await Recipe.find(
     { category: { $regex: category, $options: "i" } },
     null,

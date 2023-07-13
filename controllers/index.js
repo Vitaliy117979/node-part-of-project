@@ -9,12 +9,17 @@ const { ctrlWrapper } = require("../helpers");
 const { updateSubscription } = require("./subscribe/subscribe");
 const { searchByTitle } = require("./search/searchByTitle");
 
-const getRecipesList = require("./recipes/getRecipes");
 const getCategoryList = require("./recipes/getCategoryList");
 const getRecipesByCategory = require("./recipes/getRecipesByCategory");
 const getRecipesById = require("./recipes/getRecipeById");
 const { getRecipesForMainPage } = require("./recipes/getRecipesForMain");
-const { createRecipes } = require("./recipes/createRecipes");
+const { getListOfIngredients } = require("./ingredients/ingredientsList");
+const { searchByIngredient } = require("./search/searchByIngredient");
+const getPopularRecipe = require("./recipes/getPopularRecipe");
+
+const getShoppingList = require("./shoppingList/getShoppingList");
+const addProductToShoppingList = require("./shoppingList/addProductToShoppingList");
+const deleteProductFromShoppingList = require("./shoppingList/deleteProductFromShoppingList");
 
 module.exports = {
   searchByTitle: ctrlWrapper(searchByTitle),
@@ -25,10 +30,16 @@ module.exports = {
   updateUserInformation: ctrlWrapper(updateUserInformation),
   updateSubscription: ctrlWrapper(updateSubscription),
 
-  getRecipesList: ctrlWrapper(getRecipesList),
   getCategoryList: ctrlWrapper(getCategoryList),
   getRecipesByCategory: ctrlWrapper(getRecipesByCategory),
   getRecipesById: ctrlWrapper(getRecipesById),
   getRecipesForMainPage: ctrlWrapper(getRecipesForMainPage),
-  createRecipes: ctrlWrapper(createRecipes),
+  getPopularRecipe: ctrlWrapper(getPopularRecipe),
+
+  getListOfIngredients: ctrlWrapper(getListOfIngredients),
+  searchByIngredient: ctrlWrapper(searchByIngredient),
+
+  getShoppingList: ctrlWrapper(getShoppingList),
+  addProductToShoppingList: ctrlWrapper(addProductToShoppingList),
+  deleteProductFromShoppingList: ctrlWrapper(deleteProductFromShoppingList),
 };

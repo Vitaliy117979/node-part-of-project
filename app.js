@@ -6,9 +6,11 @@ require("dotenv").config()
 const authRouter = require('./routes/api/auth')
 const subscribeRouter = require("./routes/api/subscribe")
 const recipesRouter = require("./routes/api/recipes")
-
+const ingredientsListRouter = require("./routes/api/ingredientsList")
 
 const searchByTitleRouter = require("./routes/api/search");
+
+const shoppingListRouter = require("./routes/api/shoppingList");
 
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
@@ -22,16 +24,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
-
-
-
-
-
 app.use("/api/users", authRouter);
 app.use('/api/recipes', recipesRouter)
 app.use("/api/subscribe", subscribeRouter);
 app.use("/api/search", searchByTitleRouter);
-
+app.use("/api/ingredients", ingredientsListRouter);
+app.use("/api/shopping-list", shoppingListRouter);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
