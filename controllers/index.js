@@ -9,7 +9,6 @@ const { ctrlWrapper } = require("../helpers");
 const { updateSubscription } = require("./subscribe/subscribe");
 const { searchByTitle } = require("./search/searchByTitle");
 
-
 const getCategoryList = require("./recipes/getCategoryList")
 const getRecipesByCategory = require("./recipes/getRecipesByCategory")
 const getRecipesById = require("./recipes/getRecipeById")
@@ -17,6 +16,11 @@ const {getRecipesForMainPage} = require("./recipes/getRecipesForMain")
 const {getListOfIngredients} = require("./ingredients/ingredientsList")
 const {searchByIngredient} = require("./search/searchByIngredient")
 const getPopularRecipe = require("./recipes/getPopularRecipe")
+
+const getShoppingList = require("./shoppingList/getShoppingList");
+const addProductToShoppingList = require("./shoppingList/addProductToShoppingList");
+const deleteProductFromShoppingList = require("./shoppingList/deleteProductFromShoppingList");
+
 module.exports = {
   searchByTitle: ctrlWrapper(searchByTitle),
   register: ctrlWrapper(register),
@@ -33,5 +37,9 @@ module.exports = {
   getPopularRecipe: ctrlWrapper(getPopularRecipe), 
 
   getListOfIngredients: ctrlWrapper(getListOfIngredients),
-  searchByIngredient: ctrlWrapper(searchByIngredient)
+  searchByIngredient: ctrlWrapper(searchByIngredient),
+
+  getShoppingList: ctrlWrapper(getShoppingList),
+  addProductToShoppingList: ctrlWrapper(addProductToShoppingList),
+  deleteProductFromShoppingList: ctrlWrapper(deleteProductFromShoppingList),
 };
