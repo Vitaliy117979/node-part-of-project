@@ -10,7 +10,7 @@ const {
 
 router.use(authenticate);
 
-router.get("/popular", getPopularRecipe);
+router.get("/popular-recipe", getPopularRecipe);
 router.get("/category/:category", getRecipesByCategory);
 router.get("/main-page", getRecipesForMainPage);
 router.get("/category-list", getCategoryList);
