@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { authenticate, validate, isValidId } = require("../../middleware");
-const { getShoppingList, addItemToShoppingList, deleteItemFromShoppingList } = require("../../controllers");
+const { getShoppingList, addProductToShoppingList, deleteProductFromShoppingList } = require("../../controllers");
 const { productSchema } = require("../../models/product");
 
 router.use(authenticate);
@@ -14,13 +14,13 @@ router.get(
 router.post(
         "/", 
         validate(productSchema), 
-        addItemToShoppingList
+        addProductToShoppingList
 );
 
 router.delete(
         "/:id",
         isValidId,
-        deleteItemFromShoppingList
+        deleteProductFromShoppingList
 );
 
 module.exports = router;
