@@ -142,7 +142,7 @@
         }
       }
     },
-    "/users/updateUser": {
+    "/users/update": {
       "patch": {
         "tags": ["Auth"],
         "summary": "Updating user information",
