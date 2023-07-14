@@ -1,51 +1,20 @@
-const cloudinary = require("cloudinary").v2;
 const multer = require("multer");
-const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const path = require("path");
 
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_NAME,
-  api_key: process.env.CLOUDINARY_KEY,
-  api_secret: process.env.CLOUDINARY_SECRET,
-});
+const tempDir = path.join(__dirname, "../", "tmp");
 
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: async (req, file) => {
-    console.log(req.body.name);
-    // Determine the folder based on file properties or request data
-    if (req.body.name) {
-      let folder;
-      if (file.fieldname === "avatarURL") {
-        folder = "avatars";
-      } else if (file.fieldname === "preview") {
-        folder = "preview";
-      } else {
-        folder = "misc";
-      }
+const multerConfig = multer.diskStorage({
+  destination: tempDir,
+  filename: (req, file, cb) => {
+    const uniquePrefix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    const newName = `${uniquePrefix}_${file.originalname}`;
 
-      return {
-        folder: folder,
-        allowed_formats: ["jpg", "png"],
-        chunk_size: 6000000,
-        public_id: `${Date.now() + "-" + Math.round(Math.random() * 1e9)}_${
-          file.originalname
-        }`,
-        transformation: [
-          { width: 350, height: 350 },
-          { width: 700, height: 700 },
-        ],
-      };
-    }
-    return {};
+    cb(null, newName);
   },
 });
 
-const limits = {
-  fileSize: 3 * 1024 * 1024,
-};
 const upload = multer({
-  storage,
-  limits,
+  storage: multerConfig,
 });
 
-module.exports = upload;
+module.exports = upload
