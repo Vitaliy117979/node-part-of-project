@@ -6,3 +6,4 @@ async function getCategoryList(req, res, ) {
    
 }
 module.exports = getCategoryList
+

@@ -9,13 +9,14 @@ const { ctrlWrapper } = require("../helpers");
 const { updateSubscription } = require("./subscribe/subscribe");
 const { searchByTitle } = require("./search/searchByTitle");
 
-const getCategoryList = require("./recipes/getCategoryList")
-const getRecipesByCategory = require("./recipes/getRecipesByCategory")
-const getRecipesById = require("./recipes/getRecipeById")
-const {getRecipesForMainPage} = require("./recipes/getRecipesForMain")
-const {getListOfIngredients} = require("./ingredients/ingredientsList")
-const {searchByIngredient} = require("./search/searchByIngredient")
-const getPopularRecipe = require("./recipes/getPopularRecipe")
+const getCategoryList = require("./recipes/getCategoryList");
+const getRecipesByCategory = require("./recipes/getRecipesByCategory");
+const getRecipesById = require("./recipes/getRecipeById");
+const { getRecipesForMainPage } = require("./recipes/getRecipesForMain");
+const { getListOfIngredients } = require("./ingredients/ingredientsList");
+const { searchByIngredient } = require("./search/searchByIngredient");
+const getPopularRecipe = require("./recipes/getPopularRecipe");
+const { createRecipes } = require("./recipes/createRecipes");
 
 const getShoppingList = require("./shoppingList/getShoppingList");
 const addProductToShoppingList = require("./shoppingList/addProductToShoppingList");
@@ -34,7 +35,8 @@ module.exports = {
   getRecipesByCategory: ctrlWrapper(getRecipesByCategory),
   getRecipesById: ctrlWrapper(getRecipesById),
   getRecipesForMainPage: ctrlWrapper(getRecipesForMainPage),
-  getPopularRecipe: ctrlWrapper(getPopularRecipe), 
+  getPopularRecipe: ctrlWrapper(getPopularRecipe),
+  createRecipes: ctrlWrapper(createRecipes),
 
   getListOfIngredients: ctrlWrapper(getListOfIngredients),
   searchByIngredient: ctrlWrapper(searchByIngredient),
