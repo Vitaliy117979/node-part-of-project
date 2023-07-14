@@ -189,7 +189,7 @@
       }
     },
     "/subscribe": {
-      "post": {
+      "patch": {
         "tags": ["Subscribe"],
         "summary": "User subscribe service",
         "parameters": [],
