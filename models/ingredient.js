@@ -37,3 +37,6 @@ const Ingredient = model("ingredient", ingredientSchema);
 module.exports = {
   Ingredient,
 };
+
+
+

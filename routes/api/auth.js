@@ -15,7 +15,7 @@ router.post("/login", validate(schemas.loginSchema), login);
 router.get("/current", authenticate, getCurrent);
 router.post("/logout", authenticate, logout);
 router.patch(
-  "/updateUser",
+  "/update",
   authenticate,
   upload.single("avatarURL"),
   updateUserInformation

@@ -1,7 +1,6 @@
 {
   "openapi": "3.0.1",
   "info": {
-
     "version": "1.0.1",
 
     "title": "Swagger test",
@@ -11,7 +10,7 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "consumes": ["application/json"],
+  "consumes": ["application/json multipart/form-data"],
   "produces": ["application/json"],
   "servers": [
     { "url": "http://localhost:3030/api" },
@@ -104,12 +103,86 @@
         }
       }
     },
+    "/users/current": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Get current user information",
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/getCurrent"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/users/logout": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User logout",
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "204": {},
+          "401": {
+            "description": "Not authorized"
+          }
+        }
+      }
+    },
+    "/users/updateUser": {
+      "patch": {
+        "tags": ["Auth"],
+        "summary": "Updating user information",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Updata`s object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/updateUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Your data has been updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/updateUserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Name field cannot be empty. or File size exceeds the limit.",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          }
+        }
+      }
+    },
     "/subscribe": {
       "post": {
         "tags": ["Subscribe"],
         "summary": "User subscribe service",
         "parameters": [],
-        "security": [{"Bearer": []}],
+        "security": [{ "Bearer": [] }],
         "requestBody": {
           "description": "Subscribe's object",
           "required": true,
@@ -200,6 +273,54 @@
             "type": "string",
             "description": "User's password",
             "example": "qwerty123"
+          }
+        }
+      },
+      "getCurrent": {
+        "type": "object",
+        "required": ["email", "name"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "Bogdan"
+          }
+        }
+      },
+      "updateUser": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "Mango"
+          },
+          "avatarURL": {
+            "type": "string",
+            "format": "binary",
+            "description": "User's avatar"
+          }
+        }
+      },
+      "updateUserResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "Mango"
+          },
+          "avatarURL": {
+            "type": "string",
+            "format": "binary",
+            "contentMediaType": "image/jpeg",
+            "description": "User's avatar"
           }
         }
       },
