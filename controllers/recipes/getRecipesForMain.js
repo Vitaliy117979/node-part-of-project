@@ -6,7 +6,7 @@ const getRecipesForMainPage = async (req, res) => {
 
   const categories = ["Breakfast", "Miscellaneous", "Chicken", "Dessert"];
 
-  const recipes = await Recipe.find({ category: { $in: categories } }).populate("ingredients.id");
+  const recipes = await Recipe.find({ category: { $in: categories } }).populate("ingredients.id").sort({ popularity: -1 });;
 
   const recipeData = categories.map((category) => {
     const categoryRecipes = recipes
