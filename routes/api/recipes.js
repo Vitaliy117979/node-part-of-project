@@ -1,5 +1,5 @@
 const express = require("express");
-const { authenticate, isValidId } = require("../../middleware");
+const { authenticate, isValidId, upload } = require("../../middleware");
 const router = express.Router();
 const {
   getCategoryList,
@@ -18,6 +18,6 @@ router.get("/main-page", getRecipesForMainPage);
 router.get("/category-list", getCategoryList);
 router.get("/:id", isValidId, getRecipesById);
 
-router.post("/", createRecipes);
+router.post("/", upload.single("preview"), createRecipes);
 
 module.exports = router;

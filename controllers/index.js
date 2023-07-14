@@ -16,7 +16,9 @@ const { getRecipesForMainPage } = require("./recipes/getRecipesForMain");
 const { getListOfIngredients } = require("./ingredients/ingredientsList");
 const { searchByIngredient } = require("./search/searchByIngredient");
 const getPopularRecipe = require("./recipes/getPopularRecipe");
-const { createRecipes } = require("./recipes/createRecipes");
+const { createRecipes } = require("./ownRecipes/createRecipes");
+const { getCreatedRecipes } = require("./ownRecipes/getCreatedRecipes");
+const { deleteOwnRecipes } = require("./ownRecipes/deleteOwnRecipes");
 
 const getShoppingList = require("./shoppingList/getShoppingList");
 const addProductToShoppingList = require("./shoppingList/addProductToShoppingList");
@@ -37,6 +39,8 @@ module.exports = {
   getRecipesForMainPage: ctrlWrapper(getRecipesForMainPage),
   getPopularRecipe: ctrlWrapper(getPopularRecipe),
   createRecipes: ctrlWrapper(createRecipes),
+  getCreatedRecipes: ctrlWrapper(getCreatedRecipes),
+  deleteOwnRecipes: ctrlWrapper(deleteOwnRecipes),
 
   getListOfIngredients: ctrlWrapper(getListOfIngredients),
   searchByIngredient: ctrlWrapper(searchByIngredient),

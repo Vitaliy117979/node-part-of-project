@@ -1,14 +1,14 @@
-
-const express = require('express')
-const logger = require('morgan')
-const cors = require('cors')
-require("dotenv").config()
-const authRouter = require('./routes/api/auth')
-const subscribeRouter = require("./routes/api/subscribe")
-const recipesRouter = require("./routes/api/recipes")
-const ingredientsListRouter = require("./routes/api/ingredientsList")
+const express = require("express");
+const logger = require("morgan");
+const cors = require("cors");
+require("dotenv").config();
+const authRouter = require("./routes/api/auth");
+const subscribeRouter = require("./routes/api/subscribe");
+const recipesRouter = require("./routes/api/recipes");
+const ingredientsListRouter = require("./routes/api/ingredientsList");
 
 const searchByTitleRouter = require("./routes/api/search");
+const ownRecipesRouter = require("./routes/api/ownRecipes");
 
 const shoppingListRouter = require("./routes/api/shoppingList");
 
@@ -25,11 +25,12 @@ app.use(express.json());
 app.use(express.static("public"));
 
 app.use("/api/users", authRouter);
-app.use('/api/recipes', recipesRouter)
+app.use("/api/recipes", recipesRouter);
 app.use("/api/subscribe", subscribeRouter);
 app.use("/api/search", searchByTitleRouter);
 app.use("/api/ingredients", ingredientsListRouter);
 app.use("/api/shopping-list", shoppingListRouter);
+app.use("/api/ownRecipes", ownRecipesRouter);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
