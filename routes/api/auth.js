@@ -1,6 +1,6 @@
 const express = require("express");
 const schemas = require("../../schemas");
-const { authenticate, validate, upload } = require("../../middleware");
+const { authenticate, validate,  upload } = require("../../middleware");
 const {
   register,
   login,
