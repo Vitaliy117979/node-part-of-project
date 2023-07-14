@@ -436,7 +436,7 @@
           "subscription": {
             "type": "string",
             "description": "Subscription request",
-            "example": "Subscribe for us",
+            "example": "subscribe",
             "enam": ["subscribe", "unsubscribe"]
           },
           "email": {
