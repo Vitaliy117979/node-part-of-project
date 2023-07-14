@@ -11,32 +11,32 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: async (req, file) => {
-   console.log(req.body.name);
+    console.log(req.body.name);
     // Determine the folder based on file properties or request data
     if (req.body.name) {
-    let folder;
-    if (file.fieldname === "avatarURL") {
-      folder = "avatars";
-    } else if (file.fieldname === "documents") {
-      folder = "documents";
-    } else {
-      folder = "misc";
-    }
+      let folder;
+      if (file.fieldname === "avatarURL") {
+        folder = "avatars";
+      } else if (file.fieldname === "preview") {
+        folder = "preview";
+      } else {
+        folder = "misc";
+      }
 
-    return {
-      folder: folder,
-      allowed_formats: ["jpg", "png"],
-      chunk_size: 6000000,
-      public_id: `${Date.now() + "-" + Math.round(Math.random() * 1e9)}_${
-        file.originalname
-      }`,
-      transformation: [
-        { width: 350, height: 350 },
-        { width: 700, height: 700 },
-      ],
-    };
-}
-return {};
+      return {
+        folder: folder,
+        allowed_formats: ["jpg", "png"],
+        chunk_size: 6000000,
+        public_id: `${Date.now() + "-" + Math.round(Math.random() * 1e9)}_${
+          file.originalname
+        }`,
+        transformation: [
+          { width: 350, height: 350 },
+          { width: 700, height: 700 },
+        ],
+      };
+    }
+    return {};
   },
 });
 
@@ -45,7 +45,7 @@ const limits = {
 };
 const upload = multer({
   storage,
-  limits
+  limits,
 });
 
 module.exports = upload;

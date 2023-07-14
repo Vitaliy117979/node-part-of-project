@@ -1,7 +1,6 @@
 {
   "openapi": "3.0.1",
   "info": {
-
     "version": "1.0.1",
 
     "title": "Swagger test",
@@ -25,6 +24,10 @@
     {
       "name": "Subscribe",
       "description": "Subscribe endpoints"
+    },
+    {
+      "name": "Search",
+      "description": "Search endpoints"
     }
   ],
 
@@ -109,7 +112,7 @@
         "tags": ["Subscribe"],
         "summary": "User subscribe service",
         "parameters": [],
-        "security": [{"Bearer": []}],
+        "security": [{ "Bearer": [] }],
         "requestBody": {
           "description": "Subscribe's object",
           "required": true,
@@ -134,6 +137,76 @@
           },
           "400": {
             "description": "Unsuccessful request",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/search": {
+      "get": {
+        "tags": ["Search"],
+        "summary": "Search recipes by keyword",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "keyword",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Keyword for searching recipes"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Number of recipes per page"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "oneOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Recipe"
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string",
+                        "description": "Message when no recipes are found"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "No search keyword specified",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
             "content": {}
           }
         }
@@ -252,6 +325,92 @@
             "description": "Subscription responce",
             "example": "Subscribe for us",
             "enam": ["subscribe", "unsubscribe"]
+          }
+        }
+      },
+      "Recipe": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Recipe title"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "Beef",
+              "Breakfast",
+              "Chicken",
+              "Dessert",
+              "Goat",
+              "Lamb",
+              "Miscellaneous",
+              "Pasta",
+              "Pork",
+              "Seafood",
+              "Side",
+              "Starter",
+              "Vegan",
+              "Vegetarian"
+            ],
+            "description": "Recipe category"
+          },
+          "area": {
+            "type": "string",
+            "description": "Recipe area"
+          },
+          "instructions": {
+            "type": "string",
+            "description": "Recipe instructions"
+          },
+          "description": {
+            "type": "string",
+            "description": "Recipe description"
+          },
+          "time": {
+            "type": "string",
+            "description": "Recipe preparation time"
+          },
+          "ingredients": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Ingredient ID",
+                  "ref": "ingredient"
+                },
+                "measure": {
+                  "type": "string",
+                  "description": "Ingredient measure"
+                }
+              }
+            },
+            "description": "Recipe ingredients"
+          },
+          "thumb": {
+            "type": "string",
+            "description": "Recipe thumbnail"
+          },
+          "preview": {
+            "type": "string",
+            "description": "Recipe preview"
+          },
+          "youtube": {
+            "type": "string",
+            "description": "Recipe YouTube video link"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Recipe tags"
+          },
+          "popularity": {
+            "type": "number",
+            "description": "Recipe popularity"
           }
         }
       }

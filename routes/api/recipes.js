@@ -7,6 +7,7 @@ const {
   getRecipesById,
   getRecipesForMainPage,
   getPopularRecipe,
+  createRecipes,
 } = require("../../controllers");
 
 router.use(authenticate);
