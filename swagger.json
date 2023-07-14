@@ -167,8 +167,15 @@
             }
           },
           "400": {
-            "description": "Name field cannot be empty. or File size exceeds the limit.",
-            "content": {}
+            "description": "Name field cannot be empty. or File size exceeds the limit. or Missing fields."
+            ,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserUpdateError"
+                }
+              }
+            }
           },
           "401": {
             "description": "Not authorized",
