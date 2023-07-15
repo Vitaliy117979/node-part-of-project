@@ -1,16 +1,19 @@
 const Product = require("../../models/product");
 
 const addProductToShoppingList = async (req, res) => {
- const { _id: owner } = req.user;
-
+  const { _id: owner } = req.user;
+  const { name, desc, img, measure } = req.body;
   const ingredients = await Product.create({
-        ...req.body,
-        owner: owner
-      });
+    name,
+    desc,
+    img,
+    measure,
+    owner: owner,
+  });
 
-      console.log(ingredients);
+  console.log(ingredients);
 
-  res.status(201).json({ message: "Products added to Shopping List" });
+  res.status(201).json(ingredients);
 };
 
 module.exports = addProductToShoppingList;

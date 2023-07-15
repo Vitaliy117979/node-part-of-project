@@ -1,12 +1,7 @@
-const { ObjectId } = require("mongodb");
 const { Schema, model } = require("mongoose");
 
 const productSchema = Schema(
   {
-    _id: {
-      type: ObjectId,
-      required: true,
-    },
     name: {
       type: String,
       required: true,
