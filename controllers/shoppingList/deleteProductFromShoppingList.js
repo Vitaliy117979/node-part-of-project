@@ -3,9 +3,9 @@ const { HttpError } = require("../../helpers");
 
 const deleteProductFromShoppingList = async (req, res) => {
   const { _id: owner } = req.user;
-  const { id: _id } = req.params;
-
-  const result = await Product.findByIdAndRemove({ _id, owner   });
+  const { id } = req.params;
+console.log(req.params);
+  const result = await Product.deleteOne({ id, owner});
 
   if (!result) {
     throw HttpError(404, "Product not found in Shopping List");

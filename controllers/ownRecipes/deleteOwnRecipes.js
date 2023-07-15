@@ -4,8 +4,7 @@ const HttpError = require("../../helpers/HttpError");
 const deleteOwnRecipes = async (req, res, next) => {
   try {
     const recipeId = req.params.recipeId;
-
-    const recipe = await Recipe.findById(recipeId);
+    const recipe = await Recipe.findOne(recipeId);
     if (!recipe) {
       throw new HttpError(404, "Recipe not found");
     }
