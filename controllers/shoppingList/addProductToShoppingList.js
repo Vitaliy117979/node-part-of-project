@@ -1,16 +1,16 @@
-const { Product } = require("../../models/product");
+const Product = require("../../models/product");
 
 const addProductToShoppingList = async (req, res) => {
-        const { _id } = req.user;
+ const { _id: owner } = req.user;
 
-        const productsArray = req.body.products.map((product) => {
-                product.user = _id;
-                return product;
-        });
+  const ingredients = await Product.create({
+        ...req.body,
+        owner: owner
+      });
 
-        await Product.create(productsArray);
+      console.log(ingredients);
 
-        res.status(201).json({message: "Products added to Shopping List"});
+  res.status(201).json({ message: "Products added to Shopping List" });
 };
 
 module.exports = addProductToShoppingList;
