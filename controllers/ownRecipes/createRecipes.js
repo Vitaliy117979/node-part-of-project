@@ -1,4 +1,3 @@
-const cloudinary = require("cloudinary").v2;
 const Recipe = require("../../models/recipe");
 const { uploadFile } = require("../../middleware");
 

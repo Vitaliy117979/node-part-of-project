@@ -1,7 +1,7 @@
 const Recipe = require("../../models/recipe");
 const HttpError = require("../../helpers/HttpError");
 
-deleteOwnRecipes = async (req, res, next) => {
+const deleteOwnRecipes = async (req, res, next) => {
   try {
     const recipeId = req.params.recipeId;
 
