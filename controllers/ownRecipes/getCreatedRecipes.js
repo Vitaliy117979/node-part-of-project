@@ -1,6 +1,6 @@
 const Recipe = require("../../models/recipe");
 
-getCreatedRecipes = async (req, res, next) => {
+const getCreatedRecipes = async (req, res, next) => {
   try {
     const userId = req.user._id;
     const recipes = await Recipe.find({ createdBy: userId });
