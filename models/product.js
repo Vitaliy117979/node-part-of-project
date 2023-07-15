@@ -2,29 +2,32 @@ const { Schema, model } = require("mongoose");
 
 const productSchema = Schema(
         {
-          title: {
+          name: {
             type: String,
             required: true,
           },
-          quentity: {
+          desc: {
             type: String,
             required: true,
           },
-          user: {
+          img: {
+                type: String,
+           },
+          measure: {
+            type: String,
+            required: true,
+          },
+          owner: {
             type: Schema.Types.ObjectId,
             ref: "user",
             required: true,
           },
-          thumb: {
-                type: String,
-           },
         },
         { timestamps: true }
       );
       
       const Product = model("product", productSchema);
       
-      module.exports = {
-        Product,
-      };
+      module.exports = Product
+      
       

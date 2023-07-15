@@ -1,16 +1,10 @@
-const { Product } = require("../../models/product");
-const { HttpError } = require("../../helpers");
-
+const  Product  = require("../../models/product");
 
 const getShoppingList = async (req, res) => {
-        const { _id: userId } = req.user;
+  const { _id: owner } = req.user;
 
-        try {
-                const products = await Product.find({userId}, "-updateAt -createAt");
-                res.json(products);
-        } catch (error) {
-                throw HttpError (500, error.toString());
-        }
+  const products = await Product.find({ owner }, "-updateAt -createAt");
+  res.json(products);
 };
 
 module.exports = getShoppingList;
