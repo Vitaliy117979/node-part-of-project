@@ -28,7 +28,19 @@
     {
       "name": "Search",
       "description": "Search endpoints"
-    }
+    },
+    {
+      "name": "Ingredients",
+      "description": "Ingredients endpoints"
+    },
+    {
+      "name": "Recipes",
+      "description": "Recipes endpoints"
+    },
+    {
+      "name": "ShoppingList",
+      "description": "Shopping List endpoints"
+    } 
   ],
 
   "paths": {
@@ -292,6 +304,134 @@
           }
         }
       }
+    },
+    "/ingredients/list": {
+      "get": {
+        "tags": ["Ingredients"],
+        "summary": "Get all ingredients",
+        "parameters": [],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get the list of ingredients successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IngredientsListResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server problems",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/shopping-list": {
+      "get": {
+        "tags": ["ShoppingList"],
+        "summary": "Get all products from shopping list",
+        "parameters": [],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get all products successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/productsResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["ShoppingList"],
+        "summary": "Add new product to shopping list",
+        "parameters": [],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "requestBody": {
+          "description": "New product",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/addProductRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "New product added",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/addProductResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unsuccessful request",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/shopping-list/{id}": {
+      "delete": {
+        "tags": ["ShoppingList"],
+        "summary": "Delete product from shopping list",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Product's id",
+            "example": "589b43b898vc19791795e093"
+          }
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product deleted successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/deleteProductResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Product not found",
+            "content": {}
+          }
+        }
+      }
     }
   },
   "components": {
@@ -541,6 +681,112 @@
             "type": "number",
             "description": "Recipe popularity"
           }
+        }
+      }
+    },
+    "IngredientsListResponse": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of ingredient",
+            "example": "Potato"
+          },
+          "desc": {
+            "type": "string",
+            "description": "Description of ingredient",
+            "example": ""
+          },
+          "img": {
+            "type": "string",
+            "description": "URL of ingredient's image",
+            "example": "https://res.cloudinary.com/***********"
+          }
+        }
+      }
+    },
+    "productsResponse": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Title of product",
+          "format": "text",
+          "example": "Title"
+        },
+        "quantity": {
+          "type": "string",
+          "description": "Quantity of product",
+          "format": "text",
+          "example": "7"
+        },
+        "user": {
+          "type": "string",
+          "description": "User's id",
+          "example": "589b43b898vc19791795e093"
+        },
+        "thumb": {
+          "type": "string",
+          "description": "URL of product's image",
+          "format": "text",
+          "example": "https://res.cloudinary.com/***********"
+        }
+      }
+    },
+    "addProductRequest": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title of product",
+            "format": "text"
+          },
+          "quantity": {
+            "type": "string",
+            "description": "Quantity of product",
+            "format": "text"
+          },
+          "thumb": {
+            "type": "string",
+            "description": "URL of product's image",
+            "format": "text"
+          }
+        }
+      },
+      "example": [
+        {
+          "title": "Title1",
+          "quantity": "1",
+          "thumb": "https://res.cloudinary.com/***********"
+        },
+        {
+          "title": "Title2",
+          "quantity": "2",
+          "thumb": "https://res.cloudinary.com/***********"
+        }
+      ]
+    },
+    "addProductResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "Success message",
+          "example": "Product added successful"
+        }
+      }
+    },
+    "deleteProductResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "Success message",
+          "example": "Product deleted successful"
         }
       }
     },
