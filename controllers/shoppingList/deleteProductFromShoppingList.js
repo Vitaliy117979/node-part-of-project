@@ -3,7 +3,8 @@ const { HttpError } = require("../../helpers");
 
 const deleteProductFromShoppingList = async (req, res) => {
   const { id: newId } = req.params;
-  const result = await Product.deleteOne({newId});
+  const {_id: owner} = req.user
+  const result = await Product.deleteOne({newId, owner});
   console.log(result);
 
   if (result.deletedCount === 0) {
