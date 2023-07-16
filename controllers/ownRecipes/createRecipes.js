@@ -1,4 +1,4 @@
-const Recipe = require("../../models/ownRecipe");
+const Recipe = require("../../models/recipe");
 const { uploadFile } = require("../../middleware");
 
 const createRecipes = async (req, res, next) => {
