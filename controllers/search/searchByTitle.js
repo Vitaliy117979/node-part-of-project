@@ -22,10 +22,3 @@ console.log(req.query);
 };
 
 module.exports = { searchByTitle };
-const obj = {
-  area: '',
-  thumb: '',
-  youtube: '',
-  tags: [],
-  popularity: Math.floor(Math.random() * 10),
-};
