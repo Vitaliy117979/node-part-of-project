@@ -7,6 +7,9 @@ const buyIngredientSchema = Joi.object({
   desc: Joi.string().required(),
   img: Joi.string().required(),
   measure: Joi.string().required(),
+recipeId: Joi.string().required(),
+
+  
 });
 
 module.exports = buyIngredientSchema;
