@@ -14,9 +14,7 @@ const createRecipes = async (req, res, next) => {
       youtube,
       tags,
       popularity,
-    } = req.body;
-
-    const ingredients = JSON.parse(req.body.ingredients);
+    } = JSON.parse(req.body.data);
 
     const result = await uploadFile(req.file.fieldname, req.file.filename);
 
