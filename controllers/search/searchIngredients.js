@@ -3,7 +3,7 @@ const HttpError = require("../../helpers/HttpError");
 
 const searchIngredients = async (req, res, next) => {
   const keyword = req.query.keyword;
-  const {page = 1, limit = 8} = req.query;
+  const {page = 1, limit = 12} = req.query;
   const skip = (page - 1) * limit;
 console.log(req.query);
   if (!keyword) {
