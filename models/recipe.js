@@ -28,7 +28,6 @@ const recipeSchema = new Schema(
     },
     area: {
       type: String,
-      required: true,
     },
     instructions: {
       type: String,
@@ -54,7 +53,6 @@ const recipeSchema = new Schema(
     ],
     thumb: {
       type: String,
-      required: true,
     },
     preview: {
       type: String,
@@ -62,15 +60,12 @@ const recipeSchema = new Schema(
     },
     youtube: {
       type: String,
-      required: true,
     },
     tags: {
       type: [String],
-      required: true,
     },
     popularity: {
       type: Number,
-      required: true,
     },
     createdBy: {
       type: String,
