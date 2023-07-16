@@ -14,21 +14,26 @@ const userSchema = new Schema(
     name: {
       type: String,
       required: [true, "Name is required"],
-
     },
     subscription: {
       type: String,
       enum: ["subscribe", "unsubscribe"],
       default: "unsubscribe",
     },
+    favorites: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Recipe",
+      },
+    ],
     avatarURL: String,
     token: String,
   },
   { versionKey: false, timestamps: true }
 );
 
-userSchema.post("save", handleMongooseError)
+userSchema.post("save", handleMongooseError);
 
-const User = model("User", userSchema)
+const User = model("User", userSchema);
 
-module.exports = User
+module.exports = User;

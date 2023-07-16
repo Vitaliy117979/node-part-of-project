@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 const handleMongooseError = require("../helpers/handleMongooseError");
+
 const recipeSchema = new Schema(
   {
     title: {
@@ -47,7 +48,7 @@ const recipeSchema = new Schema(
         _id: false,
         id: {
           type: String,
-          ref: "ingredient",
+          ref: "Ingredient",
         },
         measure: { type: String },
       },
@@ -76,11 +77,11 @@ const recipeSchema = new Schema(
       type: String,
     },
   },
-
   { timestamps: true }
 );
 
-const Recipe = model("recipe", recipeSchema);
 recipeSchema.post("save", handleMongooseError);
+
+const Recipe = model("Recipe", recipeSchema);
 
 module.exports = Recipe;
