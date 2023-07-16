@@ -21,4 +21,5 @@ console.log(req.query);
   res.status(200).json(result);
 };
 
+
 module.exports = { searchIngredients };
