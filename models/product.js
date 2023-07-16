@@ -6,10 +6,6 @@ const productSchema = Schema(
       type: String,
       required: true,
     },
-    recipeId: {
-      type: String,
-      required: true,
-    },
     name: {
       type: String,
       required: true,
