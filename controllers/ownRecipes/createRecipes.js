@@ -9,6 +9,7 @@ const createRecipes = async (req, res, next) => {
       description,
       time,
       instructions,
+      ingredients,
       area,
       thumb,
       youtube,
