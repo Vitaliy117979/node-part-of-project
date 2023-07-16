@@ -19,7 +19,7 @@ const getPopularRecipe = require("./recipes/getPopularRecipe");
 const { createRecipes } = require("./ownRecipes/createRecipes");
 const { getCreatedRecipes } = require("./ownRecipes/getCreatedRecipes");
 const { deleteOwnRecipes } = require("./ownRecipes/deleteOwnRecipes");
-
+const {searchIngredients} = require("./search/searchIngredients")
 const getShoppingList = require("./shoppingList/getShoppingList");
 const addProductToShoppingList = require("./shoppingList/addProductToShoppingList");
 const deleteProductFromShoppingList = require("./shoppingList/deleteProductFromShoppingList");
@@ -47,5 +47,6 @@ module.exports = {
 
   getShoppingList: ctrlWrapper(getShoppingList),
   addProductToShoppingList: ctrlWrapper(addProductToShoppingList),
+  searchIngredients: ctrlWrapper(searchIngredients),
   deleteProductFromShoppingList: ctrlWrapper(deleteProductFromShoppingList),
 };
