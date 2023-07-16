@@ -3,19 +3,8 @@ const { uploadFile } = require("../../middleware");
 
 const createRecipes = async (req, res, next) => {
   try {
-    const {
-      title,
-      category,
-      description,
-      time,
-      instructions,
-      ingredients,
-      area,
-      thumb,
-      youtube,
-      tags,
-      popularity,
-    } = JSON.parse(req.body.data);
+    const { title, category, description, time, instructions, ingredients } =
+      JSON.parse(req.body.data);
 
     const result = await uploadFile(req.file.fieldname, req.file.filename);
 
@@ -27,11 +16,11 @@ const createRecipes = async (req, res, next) => {
       preview: result.secure_url,
       ingredients,
       instructions,
-      area,
-      thumb,
-      youtube,
-      tags,
-      popularity,
+      area: "",
+      thumb: "",
+      youtube: "",
+      tags: [],
+      popularity: 0,
       createdBy: req.user._id,
     };
 
