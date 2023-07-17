@@ -3,7 +3,6 @@ const Recipe = require("../../models/recipe");
 const { Ingredient } = require("../../models/ingredient");
 
 const getFavorites = async (req, res, next) => {
-  try {
     const userId = req.user._id;
 
     // Отримуємо улюблені рецепти користувача з заповненими даними про рецепти
@@ -34,10 +33,8 @@ const getFavorites = async (req, res, next) => {
       },
     ]);
 
-    res.status(200).json({ favorites: favorites[0].favorites }); // Повертаємо результат у форматі JSON
-  } catch (error) {
-    next(error); // В разі помилки передаємо її обробникові помилок
-  }
+    res.status(200).json({ favorites }); // Повертаємо результат у форматі JSON
+
 };
 
 module.exports = { getFavorites };

@@ -1,7 +1,7 @@
 const User = require("../../models/user");
 const Recipe = require("../../models/recipe");
 const addToFavorites = async (req, res, next) => {
-  const recipeId = req.body._id.$oid;
+  const recipeId = req.body._id
   const userId = req.user._id;
   // console.log(recipeId);
   try {
