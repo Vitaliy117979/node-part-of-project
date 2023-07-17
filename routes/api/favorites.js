@@ -9,7 +9,7 @@ const {
 
 router.use(authenticate);
 
-router.post("/", addToFavorites);
+router.post("/:recipeId", addToFavorites);
 router.get("/", getFavorites);
 router.delete("/:recipeId", deleteFavorites);
 
