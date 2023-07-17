@@ -15,7 +15,7 @@ console.log(req.query);
   }, null, {skip, limit})
 
   if (result.length === 0) {
-    res.status(200).json({ message: "No recipes was found for your request" });
+    res.status(400).json({ message: "No ingredients was found for your request" });
   }
 
   res.status(200).json(result);
