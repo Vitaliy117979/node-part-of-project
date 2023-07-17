@@ -14,12 +14,13 @@ const register = async (req, res, next) => {
   }
 
   const createHashPassword = await bcrypt.hash(password, 10);
-  const avatarURL = gravatar.url(email);
+  const avatarURL = gravatar.url(email, { s: "200", d: "mm" });
   const newUser = await User.create({
     ...req.body,
     password: createHashPassword,
     avatarURL,
   });
+  console.log(avatarURL);
   const existingUser = await User.findOne({ email });
   const payload = {
     id: existingUser._id,
@@ -33,6 +34,7 @@ const register = async (req, res, next) => {
     user: {
       email: newUser.email,
       name: newUser.name,
+      avatarURL: newUser.avatarURL
     },
   });
 };

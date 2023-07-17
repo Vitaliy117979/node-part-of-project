@@ -7,6 +7,7 @@ const bcrypt = require("bcrypt");
 const login = async (req, res, next) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
+  console.log(user);
   if (!user) {
     throw HttpError(401, "Email or password is wrong");
   }
@@ -16,6 +17,7 @@ const login = async (req, res, next) => {
   }
 
   const payload = {
+    
     id: user._id,
   };
   const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "24h" });
@@ -26,6 +28,7 @@ const login = async (req, res, next) => {
     user: {
       email: user.email,
       name: user.name,
+      avatarURL: user.avatarURL
     },
   });
 };
