@@ -45,8 +45,8 @@ const recipeSchema = new Schema(
       {
         _id: false,
         id: {
-          type: String,
-          ref: "ingredient",
+          type: Schema.Types.ObjectId,
+          ref: "Ingredient",
         },
         measure: { type: String },
       },
@@ -75,7 +75,7 @@ const recipeSchema = new Schema(
   { timestamps: true }
 );
 
-const Recipe = model("recipe", recipeSchema);
 recipeSchema.post("save", handleMongooseError);
+const Recipe = model("Recipe", recipeSchema);
 
 module.exports = Recipe;

@@ -21,12 +21,15 @@ const userSchema = new Schema(
       enum: ["subscribe", "unsubscribe"],
       default: "unsubscribe",
     },
-    favorites: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Recipe"
-      },
-    ],
+    favorites: {
+      type: [
+         {
+          type: Schema.Types.ObjectId,
+          ref: "Recipe",
+        },
+      ],
+      required: true,
+    },
     avatarURL: String,
     token: String,
   },
