@@ -2,20 +2,6 @@ const { Schema, model } = require("mongoose");
 
 const ingredientSchema = Schema(
   {
-    // _id: {
-    //   type: String,
-    //   required: true,
-    // },
-    // Якщо в модель додати _id, постає проблема, при запитах за рецептами в інгредієнтах:  
-    // "ingredients": [
-    //   {
-    //     "id": null,
-    //     "measure": "1 cups"
-    // },
-    // {
-    //     "id": null,
-    //     "measure": "1"
-    // },]
     name: {
       type: String,
       required: true,
@@ -32,10 +18,10 @@ const ingredientSchema = Schema(
   { timestamps: true }
 );
 
-const Ingredient = model("ingredient", ingredientSchema);
+const Ingredient = model("Ingredient", ingredientSchema);
 
 module.exports = {
-  Ingredient,
+  Ingredient
 };
 
 
