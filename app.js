@@ -11,6 +11,7 @@ const searchByTitleRouter = require("./routes/api/search");
 const ownRecipesRouter = require("./routes/api/ownRecipes");
 
 const shoppingListRouter = require("./routes/api/shoppingList");
+const favoritesRouter = require("./routes/api/favorites");
 
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
@@ -31,7 +32,7 @@ app.use("/api/search", searchByTitleRouter);
 app.use("/api/ingredients", ingredientsListRouter);
 app.use("/api/shopping-list", shoppingListRouter);
 app.use("/api/ownRecipes", ownRecipesRouter);
-
+app.use("/api/favorites", favoritesRouter);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use((req, res) => {
