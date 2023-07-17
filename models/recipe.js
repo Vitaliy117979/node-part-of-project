@@ -66,6 +66,7 @@ const recipeSchema = new Schema(
     },
     popularity: {
       type: Number,
+      min: 0,
     },
     createdBy: {
       type: String,
