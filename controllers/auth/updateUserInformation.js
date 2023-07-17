@@ -4,6 +4,7 @@ const { uploadFile } = require("../../middleware");
 const updateUserInformation = async (req, res, next) => {
   const { _id, name: oldName, avatarURL } = req.user;
   const { name } = req.body;
+  console.log(req.file);
   if(!name && !req.file){
   return res.status(400).json({ message: "missing fields." });
   }
