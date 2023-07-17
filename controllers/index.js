@@ -1,3 +1,5 @@
+// working with contacts
+
 const { updateUserInformation } = require("./auth/updateUserInformation");
 const { login } = require("./auth/userLogin");
 const { register } = require("./auth/userRegister");
@@ -17,12 +19,7 @@ const getPopularRecipe = require("./recipes/getPopularRecipe");
 const { createRecipes } = require("./ownRecipes/createRecipes");
 const { getCreatedRecipes } = require("./ownRecipes/getCreatedRecipes");
 const { deleteOwnRecipes } = require("./ownRecipes/deleteOwnRecipes");
-
-const { addToFavorites } = require("./favorites/addToFavorites");
-const { getFavorites } = require("./favorites/getFavorites");
-const { deleteFavorites } = require("./favorites/deleteFavorites");
-
-const { searchIngredients } = require("./search/searchIngredients");
+const {searchIngredients} = require("./search/searchIngredients")
 const getShoppingList = require("./shoppingList/getShoppingList");
 const addProductToShoppingList = require("./shoppingList/addProductToShoppingList");
 const deleteProductFromShoppingList = require("./shoppingList/deleteProductFromShoppingList");
@@ -44,10 +41,6 @@ module.exports = {
   createRecipes: ctrlWrapper(createRecipes),
   getCreatedRecipes: ctrlWrapper(getCreatedRecipes),
   deleteOwnRecipes: ctrlWrapper(deleteOwnRecipes),
-
-  addToFavorites: ctrlWrapper(addToFavorites),
-  getFavorites: ctrlWrapper(getFavorites),
-  deleteFavorites: ctrlWrapper(deleteFavorites),
 
   getListOfIngredients: ctrlWrapper(getListOfIngredients),
   searchByIngredient: ctrlWrapper(searchByIngredient),
