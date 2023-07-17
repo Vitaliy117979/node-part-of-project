@@ -22,8 +22,7 @@ const userSchema = new Schema(
     },
     favorites: [
       {
-        type: Schema.Types.ObjectId,
-        ref: "Recipe",
+        type: String,
       },
     ],
     avatarURL: String,
