@@ -23,6 +23,9 @@ const {searchIngredients} = require("./search/searchIngredients")
 const getShoppingList = require("./shoppingList/getShoppingList");
 const addProductToShoppingList = require("./shoppingList/addProductToShoppingList");
 const deleteProductFromShoppingList = require("./shoppingList/deleteProductFromShoppingList");
+const { addToFavorites } = require("./favorites/addToFavorites");
+const { getFavorites } = require("./favorites/getFavorites");
+const { deleteFavorites } = require("./favorites/deleteFavorites");
 
 module.exports = {
   searchByTitle: ctrlWrapper(searchByTitle),
@@ -44,7 +47,9 @@ module.exports = {
 
   getListOfIngredients: ctrlWrapper(getListOfIngredients),
   searchByIngredient: ctrlWrapper(searchByIngredient),
-
+  addToFavorites: ctrlWrapper(addToFavorites),
+  getFavorites: ctrlWrapper(getFavorites),
+  deleteFavorites: ctrlWrapper(deleteFavorites),
   getShoppingList: ctrlWrapper(getShoppingList),
   addProductToShoppingList: ctrlWrapper(addProductToShoppingList),
   searchIngredients: ctrlWrapper(searchIngredients),
