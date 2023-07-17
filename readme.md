@@ -1,4 +1,13 @@
-## GoIT Node.js Course Template
+## Back-end частина  Team-4  командного проекту по React + Node.js - So Yummy
+
+### Swagger документація - https://so-yummy-backend-hg4e.onrender.com/api-docs/
+
+### Проект створений на базі GoIT Node.js Course Template (https://github.com/goitacademy/nodejs-homework-template)
+
+### Front-end частина загального проекту So Yummy - https://github.com/snizhanamohyl/project-y9o2mW7i
+
+### Live page "So Yummy" -https://snizhanamohyl.github.io/project-y9o2mW7i/welcome
+
 ### Команди:
 
 - `npm start` &mdash; старт сервера в режимі production
