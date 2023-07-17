@@ -19,6 +19,7 @@ const { getCreatedRecipes } = require("./ownRecipes/getCreatedRecipes");
 const { deleteOwnRecipes } = require("./ownRecipes/deleteOwnRecipes");
 const { addToFavorites } = require("./favorites/addToFavorites");
 const { getFavorites } = require("./favorites/getFavorites");
+const { deleteFavorites } = require("./favorites/deleteFavorites");
 
 const getShoppingList = require("./shoppingList/getShoppingList");
 const addProductToShoppingList = require("./shoppingList/addProductToShoppingList");
@@ -44,6 +45,7 @@ module.exports = {
 
   addToFavorites: ctrlWrapper(addToFavorites),
   getFavorites: ctrlWrapper(getFavorites),
+  deleteFavorites: ctrlWrapper(deleteFavorites),
 
   getListOfIngredients: ctrlWrapper(getListOfIngredients),
   searchByIngredient: ctrlWrapper(searchByIngredient),
