@@ -7,7 +7,7 @@ const searchByTitle = async (req, res, next) => {
   const skip = (page - 1) * limit;
 console.log(req.query);
   if (!keyword) {
-    throw HttpError(400, "No search keyword specified");
+    throw HttpError(404, "No search keyword specified");
   }
 
   const result = await Recipe.find({

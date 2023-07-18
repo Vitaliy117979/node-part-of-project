@@ -8,12 +8,12 @@ const deleteOwnRecipes = async (req, res, next) => {
     return next(HttpError(404, "Recipe not found"));
   }
   if (recipe.createdBy !== req.user._id) {
-    throw new HttpError(403, "You are not authorized to delete this recipe");
+    throw HttpError(403, "You are not authorized to delete this recipe");
   }
 
   const result = await Recipe.findByIdAndDelete(recipeId);
 
-  return res.json({ message: "Recipe deleted successfully" });
+  return res.status(201).json({ message: "Recipe deleted successfully" });
 };
 
 module.exports = { deleteOwnRecipes };

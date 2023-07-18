@@ -375,6 +375,685 @@
         }
       }
     },
+    "/search/ingredients": {
+      "get": {
+        "tags": ["Search"],
+        "summary": "Search ingredients",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "keyword",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Keyword for searching recipes"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Number of ingredients per page"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "oneOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Recipe"
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string",
+                        "description": "Message when no recipes are found"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "404": {
+            "description": "No search keyword specified",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/recipes/popular-recipe": {
+      "get": {
+        "tags": ["Recipes"],
+        "summary": "Search popular recipes",
+        "parameters": [
+         
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Number of recipes per page"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "oneOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Recipe"
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string",
+                        "description": "Message when no recipes are found"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/recipes/main-page": {
+      "get": {
+        "tags": ["Recipes"],
+        "summary": "Search popular recipes",
+        "parameters": [
+         
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Number of recipes per page"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "oneOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Recipe"
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string",
+                        "description": "Message when no recipes are found"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/recipes/category/{category}": {
+      "get": {
+        "tags": ["Recipes"],
+        "summary": "Getting recipes by category",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "category",
+            "schema": { "type": "string" },
+            "required": true,
+            "description": "Category on the list of recipes: Beef, Breakfast, Chicken, Dessert, Goat, Lamb, Miscellaneous, Pasta, Pork, Seafood, Side, Starter, Vegan, Vegetarian"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": { "type": "integer" },
+            "description": "Limit the list of category recipes."
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "oneOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Recipe"
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string",
+                        "description": "Message when no recipes are found"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/recipes/{id}": {
+      "get": {
+        "tags": ["Recipes"],
+        "summary": "Getting recipe",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": { "type": "string" },
+            "required": true,
+            "description": "Recipe Id"
+          }
+  
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "recipe": {
+                      "type": "object",
+                      "description": "Recipe"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/recipes/category-list": {
+      "get": {
+        "tags": ["Recipes"],
+        "summary": "Getting category-list",
+        "parameters": [
+  
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "recipe": {
+                      "type": "object",
+                      "description": "Recipe"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/favorites": {
+      "post": {
+        "tags": ["Recipes"],
+        "summary": "Adding to favorites a recipe created by the User",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Data for adding a recipe to favorites",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["favorite"],
+                "properties": {
+                  "favorite": {
+                    "type": "string",
+                    "description": "Recipe Id"
+                  }
+                },
+                "example": {
+                  "_id": "6462a8f74c3d0ddd28897fde",
+                  "title": "Apple Frangipan Tart",
+                  "category": "Dessert",
+                  "area": "British",
+                  "instructions": "Preheat the oven to 200C/180C Fan/Gas 6.\r\nPut the biscuits in a large re-sealable freezer bag and bash with a rolling pin into fine crumbs. Melt the butter in a small pan, then add the biscuit crumbs and stir until coated with butter. Tip into the tart tin and, using the back of a spoon, press over the base and sides of the tin to give an even layer. Chill in the fridge while you make the filling.\r\nCream together the butter and sugar until light and fluffy. You can do this in a food processor if you have one. Process for 2-3 minutes. Mix in the eggs, then add the ground almonds and almond extract and blend until well combined.\r\nPeel the apples, and cut thin slices of apple. Do this at the last minute to prevent the apple going brown. Arrange the slices over the biscuit base. Spread the frangipane filling evenly on top. Level the surface and sprinkle with the flaked almonds.\r\nBake for 20-25 minutes until golden-brown and set.\r\nRemove from the oven and leave to cool for 15 minutes. Remove the sides of the tin. An easy way to do this is to stand the tin on a can of beans and push down gently on the edges of the tin.\r\nTransfer the tart, with the tin base attached, to a serving plate. Serve warm with cream, crème fraiche or ice cream.",
+                  "description": "A delicious tart made with almond cream and fresh apples.",
+                  "thumb": "https://www.themealdb.com/images/media/meals/wxywrq1468235067.jpg",
+                  "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560408/r9oh73shqwiso3t6cz7t.jpg",
+                  "time": "50",
+                  "youtube": "https://www.youtube.com/watch?v=rp8Slv4INLk",
+                  "tags": [
+                      "Tart",
+                      "Baking",
+                      "Fruity"
+                  ],
+                  "ingredients": [
+                      {
+                          "id": {
+                              "_id": "640c2dd963a319ea671e36c0",
+                              "name": "Digestive Biscuits",
+                              "desc": "A type of biscuit that originated in the United Kingdom. They are made with wholemeal flour and are lightly sweetened, making them a popular choice for use in pie crusts and as a base for cheesecakes and other desserts.",
+                              "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564743/bo5tts3n5ebbtxlnrxft.png"
+                          },
+                          "measure": "175g/6oz"
+                      },
+                      {
+                          "id": {
+                              "_id": "640c2dd963a319ea671e367e",
+                              "name": "Butter",
+                              "desc": "A dairy product made from churning cream or milk, with a high fat content and a creamy, rich flavor that is often used in cooking and baking.",
+                              "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564674/ovea5weymaecrnbwxuq9.png"
+                          },
+                          "measure": "75g/3oz"
+                      },
+                      {
+                          "id": {
+                              "_id": "640c2dd963a319ea671e3676",
+                              "name": "Bramley Apples",
+                              "desc": "A type of apple that is popular in the UK and Ireland, known for its tart flavor and firm texture, which makes it ideal for cooking and baking.",
+                              "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564216/cmakgrcdewhz0utfsw6r.png"
+                          },
+                          "measure": "200g/7oz"
+                      },
+                      {
+                          "id": {
+                              "_id": "640c2dd963a319ea671e3687",
+                              "name": "Caster Sugar",
+                              "desc": "A type of fine sugar that is commonly used in baking and cooking, with a fine texture that dissolves easily, and is often used in recipes that require quick mixing or dissolving, such as meringues, whipped cream, and cakes.",
+                              "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564673/fbkmvnc8830ng9d8j6ld.png"
+                          },
+                          "measure": "75g/3oz"
+                      },
+                      {
+                          "id": {
+                              "_id": "640c2dd963a319ea671e36db",
+                              "name": "Free-range Eggs, Beaten",
+                              "desc": "Chicken eggs from free-range chickens that have been whisked together until the whites and yolks are fully mixed.",
+                              "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564797/vgrkykfsutx3tgdpcfsp.png"
+                          },
+                          "measure": "2"
+                      },
+                      {
+                          "id": {
+                              "_id": "640c2dd963a319ea671e36f6",
+                              "name": "Ground Almonds",
+                              "desc": "Ground almonds are finely powdered almonds that can be used as a gluten-free alternative to wheat flour in baking or as a topping for dishes like oatmeal or yogurt.",
+                              "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564798/utvplhpheg7fn1mev30k.png"
+                          },
+                          "measure": "75g/3oz"
+                      },
+                      {
+                          "id": {
+                              "_id": "640c2dd963a319ea671e3861",
+                              "name": "Almond Extract",
+                              "desc": "The almond (Prunus dulcis, syn. Prunus amygdalus) is a species of tree native to Mediterranean climate regions of the Middle East, but widely cultivated elsewhere. The almond is also the name of the edible and widely cultivated seed of this tree. Within the genus Prunus, it is classified with the peach in the subgenus Amygdalus, distinguished from the other subgenera by corrugations on the shell (endocarp) surrounding the seed.\r\n\r\nThe fruit of the almond is a drupe, consisting of an outer hull and a hard shell with the seed, which is not a true nut, inside. Shelling almonds refers to removing the shell to reveal the seed. Almonds are sold shelled or unshelled. Blanched almonds are shelled almonds that have been treated with hot water to soften the seedcoat, which is then removed to reveal the white embryo.",
+                              "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678565046/xorc6zn6c7rqdqoqho1r.png"
+                          },
+                          "measure": "1 tsp"
+                      },
+                      {
+                          "id": {
+                              "_id": "640c2dd963a319ea671e36d5",
+                              "name": "Flaked Almonds",
+                              "desc": "Sliced or chopped almonds commonly used in baking and as a topping for salads and desserts.",
+                              "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564798/ioewvib3w3mmdbbhp8ia.png"
+                          },
+                          "measure": "50g/1¾oz"
+                      }
+                  ],
+                  "popularity": 0,
+                  "updatedAt": "2023-07-17T07:39:51.200Z"
+              }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Recipe added to favorites successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Recipe added to favorites successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "409": {
+            "description": "Recipe is already added to your favorites",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      },
+      "get": {
+        "tags": ["Recipes"],
+        "summary": "Getting favorite recipes created by the User",
+        "parameters": [
+         
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "description": "Recipes"
+                  },
+                  "example": [
+                    {
+                      "_id": "6462a8f74c3d0ddd28897fde",
+                      "title": "Apple Frangipan Tart",
+                      "category": "Dessert",
+                      "area": "British",
+                      "instructions": "Preheat the oven to 200C/180C Fan/Gas 6.\r\nPut the biscuits in a large re-sealable freezer bag and bash with a rolling pin into fine crumbs. Melt the butter in a small pan, then add the biscuit crumbs and stir until coated with butter. Tip into the tart tin and, using the back of a spoon, press over the base and sides of the tin to give an even layer. Chill in the fridge while you make the filling.\r\nCream together the butter and sugar until light and fluffy. You can do this in a food processor if you have one. Process for 2-3 minutes. Mix in the eggs, then add the ground almonds and almond extract and blend until well combined.\r\nPeel the apples, and cut thin slices of apple. Do this at the last minute to prevent the apple going brown. Arrange the slices over the biscuit base. Spread the frangipane filling evenly on top. Level the surface and sprinkle with the flaked almonds.\r\nBake for 20-25 minutes until golden-brown and set.\r\nRemove from the oven and leave to cool for 15 minutes. Remove the sides of the tin. An easy way to do this is to stand the tin on a can of beans and push down gently on the edges of the tin.\r\nTransfer the tart, with the tin base attached, to a serving plate. Serve warm with cream, crème fraiche or ice cream.",
+                      "description": "A delicious tart made with almond cream and fresh apples.",
+                      "thumb": "https://www.themealdb.com/images/media/meals/wxywrq1468235067.jpg",
+                      "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560408/r9oh73shqwiso3t6cz7t.jpg",
+                      "time": "50",
+                      "youtube": "https://www.youtube.com/watch?v=rp8Slv4INLk",
+                      "tags": [
+                          "Tart",
+                          "Baking",
+                          "Fruity"
+                      ],
+                      "ingredients": [
+                          {
+                              "id": {
+                                  "_id": "640c2dd963a319ea671e36c0",
+                                  "name": "Digestive Biscuits",
+                                  "desc": "A type of biscuit that originated in the United Kingdom. They are made with wholemeal flour and are lightly sweetened, making them a popular choice for use in pie crusts and as a base for cheesecakes and other desserts.",
+                                  "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564743/bo5tts3n5ebbtxlnrxft.png"
+                              },
+                              "measure": "175g/6oz"
+                          },
+                          {
+                              "id": {
+                                  "_id": "640c2dd963a319ea671e367e",
+                                  "name": "Butter",
+                                  "desc": "A dairy product made from churning cream or milk, with a high fat content and a creamy, rich flavor that is often used in cooking and baking.",
+                                  "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564674/ovea5weymaecrnbwxuq9.png"
+                              },
+                              "measure": "75g/3oz"
+                          },
+                          {
+                              "id": {
+                                  "_id": "640c2dd963a319ea671e3676",
+                                  "name": "Bramley Apples",
+                                  "desc": "A type of apple that is popular in the UK and Ireland, known for its tart flavor and firm texture, which makes it ideal for cooking and baking.",
+                                  "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564216/cmakgrcdewhz0utfsw6r.png"
+                              },
+                              "measure": "200g/7oz"
+                          },
+                          {
+                              "id": {
+                                  "_id": "640c2dd963a319ea671e3687",
+                                  "name": "Caster Sugar",
+                                  "desc": "A type of fine sugar that is commonly used in baking and cooking, with a fine texture that dissolves easily, and is often used in recipes that require quick mixing or dissolving, such as meringues, whipped cream, and cakes.",
+                                  "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564673/fbkmvnc8830ng9d8j6ld.png"
+                              },
+                              "measure": "75g/3oz"
+                          },
+                          {
+                              "id": {
+                                  "_id": "640c2dd963a319ea671e36db",
+                                  "name": "Free-range Eggs, Beaten",
+                                  "desc": "Chicken eggs from free-range chickens that have been whisked together until the whites and yolks are fully mixed.",
+                                  "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564797/vgrkykfsutx3tgdpcfsp.png"
+                              },
+                              "measure": "2"
+                          },
+                          {
+                              "id": {
+                                  "_id": "640c2dd963a319ea671e36f6",
+                                  "name": "Ground Almonds",
+                                  "desc": "Ground almonds are finely powdered almonds that can be used as a gluten-free alternative to wheat flour in baking or as a topping for dishes like oatmeal or yogurt.",
+                                  "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564798/utvplhpheg7fn1mev30k.png"
+                              },
+                              "measure": "75g/3oz"
+                          },
+                          {
+                              "id": {
+                                  "_id": "640c2dd963a319ea671e3861",
+                                  "name": "Almond Extract",
+                                  "desc": "The almond (Prunus dulcis, syn. Prunus amygdalus) is a species of tree native to Mediterranean climate regions of the Middle East, but widely cultivated elsewhere. The almond is also the name of the edible and widely cultivated seed of this tree. Within the genus Prunus, it is classified with the peach in the subgenus Amygdalus, distinguished from the other subgenera by corrugations on the shell (endocarp) surrounding the seed.\r\n\r\nThe fruit of the almond is a drupe, consisting of an outer hull and a hard shell with the seed, which is not a true nut, inside. Shelling almonds refers to removing the shell to reveal the seed. Almonds are sold shelled or unshelled. Blanched almonds are shelled almonds that have been treated with hot water to soften the seedcoat, which is then removed to reveal the white embryo.",
+                                  "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678565046/xorc6zn6c7rqdqoqho1r.png"
+                              },
+                              "measure": "1 tsp"
+                          },
+                          {
+                              "id": {
+                                  "_id": "640c2dd963a319ea671e36d5",
+                                  "name": "Flaked Almonds",
+                                  "desc": "Sliced or chopped almonds commonly used in baking and as a topping for salads and desserts.",
+                                  "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564798/ioewvib3w3mmdbbhp8ia.png"
+                              },
+                              "measure": "50g/1¾oz"
+                          }
+                      ],
+                      "popularity": 0,
+                      "updatedAt": "2023-07-17T07:39:51.200Z"
+                  }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "404": {
+            "description": "You don't have any favorite recipes yet",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/favorites/{recipeId}": {
+      "delete": {
+        "tags": ["Recipes"],
+        "summary": "Delete from favorites a recipe created by the User",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "recipeId",
+            "schema": { "type": "string" },
+            "required": true,
+            "description": "Recipe Id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "201": {
+            "description": "Recipe removed from favorites successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Recipe removed from favorites successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "400": {
+            "description": "The recipe has already been removed from favorites",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
     "/ingredients/list": {
       "get": {
         "tags": ["Ingredients"],
@@ -403,7 +1082,7 @@
         }
       }
     },
-    "/api/shopping-list": {
+    "/shopping-list": {
       "get": {
         "tags": ["ShoppingList"],
         "summary": "Get all products from shopping list",
@@ -457,12 +1136,134 @@
               }
             }
           },
-          "400": {
-            "description": "Unsuccessful request",
+          "401": {
+            "description": "Not authorized",
             "content": {}
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/ownRecipes": {
+      "post": {
+        "tags": ["Recipes"],
+        "summary": "Adding a recipe created by the User",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Recipe's object",
+          
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/RecipeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Recipe added successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipeResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+
+          "500": {
+            "description": "Failed to create recipe",
+            "content": {}
+          }
+        }
+      },
+      "get": {
+        "tags": ["Recipes"],
+        "summary": "Getting a recipes created by the User",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Recipe geted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipeResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "404": {
+            "description": "No recipes have been created yet",
+            "content": {}
+          },
+
+          "500": {
+            "description": "Failed to fetch own recipes",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/ownRecipes/{recipeId}": {
+      "delete": {
+        "tags": ["Recipes"],
+        "summary": "Delete a recipe created by the User",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "recipeId",
+            "schema": { "type": "string" },
+            "required": true,
+            "description": "Recipe Id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "201": {
+            "description": "Recipe deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Recipe deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "403": {
+            "description": "You are not authorized to delete this recipe",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+
+          "500": {
+            "description": "Failed to fetch own recipes",
             "content": {}
           }
         }

@@ -5,7 +5,7 @@ const searchByIngredient = async (req, res, next) => {
   const {page = 1, limit = 8} = req.query;
   const skip = (page - 1) * limit;
   if (!keyword) {
-    return res.status(400).json({ message: "No ingredient name specified" });
+    return res.status(404).json({ message: "No ingredient name specified" });
   }
 
   const ingredient = await Ingredient.find({
