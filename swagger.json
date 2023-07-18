@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "version": "1.0.1",
+    "version": "2.0.1",
 
     "title": "Swagger test",
     "description": "Showing off swagger-ui-express",
@@ -10,7 +10,7 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "consumes": ["application/json multipart/form-data"],
+  "consumes": ["application/json", "multipart/form-data"],
   "produces": ["application/json"],
   "servers": [
     { "url": "http://localhost:3030/api" },
@@ -40,7 +40,7 @@
     {
       "name": "ShoppingList",
       "description": "Shopping List endpoints"
-    } 
+    }
   ],
 
   "paths": {
@@ -183,8 +183,7 @@
             }
           },
           "400": {
-            "description": "Name field cannot be empty. or File size exceeds the limit. or Missing fields."
-            ,
+            "description": "Name field cannot be empty. or File size exceeds the limit. or Missing fields.",
             "content": {
               "application/json": {
                 "schema": {
@@ -450,7 +449,6 @@
         "tags": ["Recipes"],
         "summary": "Search popular recipes",
         "parameters": [
-         
           {
             "in": "query",
             "name": "page",
@@ -516,7 +514,6 @@
         "tags": ["Recipes"],
         "summary": "Search popular recipes",
         "parameters": [
-         
           {
             "in": "query",
             "name": "page",
@@ -649,7 +646,6 @@
             "required": true,
             "description": "Recipe Id"
           }
-  
         ],
         "security": [{ "Bearer": [] }],
         "responses": {
@@ -688,9 +684,7 @@
       "get": {
         "tags": ["Recipes"],
         "summary": "Getting category-list",
-        "parameters": [
-  
-        ],
+        "parameters": [],
         "security": [{ "Bearer": [] }],
         "responses": {
           "200": {
@@ -755,88 +749,84 @@
                   "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560408/r9oh73shqwiso3t6cz7t.jpg",
                   "time": "50",
                   "youtube": "https://www.youtube.com/watch?v=rp8Slv4INLk",
-                  "tags": [
-                      "Tart",
-                      "Baking",
-                      "Fruity"
-                  ],
+                  "tags": ["Tart", "Baking", "Fruity"],
                   "ingredients": [
-                      {
-                          "id": {
-                              "_id": "640c2dd963a319ea671e36c0",
-                              "name": "Digestive Biscuits",
-                              "desc": "A type of biscuit that originated in the United Kingdom. They are made with wholemeal flour and are lightly sweetened, making them a popular choice for use in pie crusts and as a base for cheesecakes and other desserts.",
-                              "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564743/bo5tts3n5ebbtxlnrxft.png"
-                          },
-                          "measure": "175g/6oz"
+                    {
+                      "id": {
+                        "_id": "640c2dd963a319ea671e36c0",
+                        "name": "Digestive Biscuits",
+                        "desc": "A type of biscuit that originated in the United Kingdom. They are made with wholemeal flour and are lightly sweetened, making them a popular choice for use in pie crusts and as a base for cheesecakes and other desserts.",
+                        "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564743/bo5tts3n5ebbtxlnrxft.png"
                       },
-                      {
-                          "id": {
-                              "_id": "640c2dd963a319ea671e367e",
-                              "name": "Butter",
-                              "desc": "A dairy product made from churning cream or milk, with a high fat content and a creamy, rich flavor that is often used in cooking and baking.",
-                              "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564674/ovea5weymaecrnbwxuq9.png"
-                          },
-                          "measure": "75g/3oz"
+                      "measure": "175g/6oz"
+                    },
+                    {
+                      "id": {
+                        "_id": "640c2dd963a319ea671e367e",
+                        "name": "Butter",
+                        "desc": "A dairy product made from churning cream or milk, with a high fat content and a creamy, rich flavor that is often used in cooking and baking.",
+                        "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564674/ovea5weymaecrnbwxuq9.png"
                       },
-                      {
-                          "id": {
-                              "_id": "640c2dd963a319ea671e3676",
-                              "name": "Bramley Apples",
-                              "desc": "A type of apple that is popular in the UK and Ireland, known for its tart flavor and firm texture, which makes it ideal for cooking and baking.",
-                              "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564216/cmakgrcdewhz0utfsw6r.png"
-                          },
-                          "measure": "200g/7oz"
+                      "measure": "75g/3oz"
+                    },
+                    {
+                      "id": {
+                        "_id": "640c2dd963a319ea671e3676",
+                        "name": "Bramley Apples",
+                        "desc": "A type of apple that is popular in the UK and Ireland, known for its tart flavor and firm texture, which makes it ideal for cooking and baking.",
+                        "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564216/cmakgrcdewhz0utfsw6r.png"
                       },
-                      {
-                          "id": {
-                              "_id": "640c2dd963a319ea671e3687",
-                              "name": "Caster Sugar",
-                              "desc": "A type of fine sugar that is commonly used in baking and cooking, with a fine texture that dissolves easily, and is often used in recipes that require quick mixing or dissolving, such as meringues, whipped cream, and cakes.",
-                              "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564673/fbkmvnc8830ng9d8j6ld.png"
-                          },
-                          "measure": "75g/3oz"
+                      "measure": "200g/7oz"
+                    },
+                    {
+                      "id": {
+                        "_id": "640c2dd963a319ea671e3687",
+                        "name": "Caster Sugar",
+                        "desc": "A type of fine sugar that is commonly used in baking and cooking, with a fine texture that dissolves easily, and is often used in recipes that require quick mixing or dissolving, such as meringues, whipped cream, and cakes.",
+                        "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564673/fbkmvnc8830ng9d8j6ld.png"
                       },
-                      {
-                          "id": {
-                              "_id": "640c2dd963a319ea671e36db",
-                              "name": "Free-range Eggs, Beaten",
-                              "desc": "Chicken eggs from free-range chickens that have been whisked together until the whites and yolks are fully mixed.",
-                              "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564797/vgrkykfsutx3tgdpcfsp.png"
-                          },
-                          "measure": "2"
+                      "measure": "75g/3oz"
+                    },
+                    {
+                      "id": {
+                        "_id": "640c2dd963a319ea671e36db",
+                        "name": "Free-range Eggs, Beaten",
+                        "desc": "Chicken eggs from free-range chickens that have been whisked together until the whites and yolks are fully mixed.",
+                        "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564797/vgrkykfsutx3tgdpcfsp.png"
                       },
-                      {
-                          "id": {
-                              "_id": "640c2dd963a319ea671e36f6",
-                              "name": "Ground Almonds",
-                              "desc": "Ground almonds are finely powdered almonds that can be used as a gluten-free alternative to wheat flour in baking or as a topping for dishes like oatmeal or yogurt.",
-                              "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564798/utvplhpheg7fn1mev30k.png"
-                          },
-                          "measure": "75g/3oz"
+                      "measure": "2"
+                    },
+                    {
+                      "id": {
+                        "_id": "640c2dd963a319ea671e36f6",
+                        "name": "Ground Almonds",
+                        "desc": "Ground almonds are finely powdered almonds that can be used as a gluten-free alternative to wheat flour in baking or as a topping for dishes like oatmeal or yogurt.",
+                        "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564798/utvplhpheg7fn1mev30k.png"
                       },
-                      {
-                          "id": {
-                              "_id": "640c2dd963a319ea671e3861",
-                              "name": "Almond Extract",
-                              "desc": "The almond (Prunus dulcis, syn. Prunus amygdalus) is a species of tree native to Mediterranean climate regions of the Middle East, but widely cultivated elsewhere. The almond is also the name of the edible and widely cultivated seed of this tree. Within the genus Prunus, it is classified with the peach in the subgenus Amygdalus, distinguished from the other subgenera by corrugations on the shell (endocarp) surrounding the seed.\r\n\r\nThe fruit of the almond is a drupe, consisting of an outer hull and a hard shell with the seed, which is not a true nut, inside. Shelling almonds refers to removing the shell to reveal the seed. Almonds are sold shelled or unshelled. Blanched almonds are shelled almonds that have been treated with hot water to soften the seedcoat, which is then removed to reveal the white embryo.",
-                              "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678565046/xorc6zn6c7rqdqoqho1r.png"
-                          },
-                          "measure": "1 tsp"
+                      "measure": "75g/3oz"
+                    },
+                    {
+                      "id": {
+                        "_id": "640c2dd963a319ea671e3861",
+                        "name": "Almond Extract",
+                        "desc": "The almond (Prunus dulcis, syn. Prunus amygdalus) is a species of tree native to Mediterranean climate regions of the Middle East, but widely cultivated elsewhere. The almond is also the name of the edible and widely cultivated seed of this tree. Within the genus Prunus, it is classified with the peach in the subgenus Amygdalus, distinguished from the other subgenera by corrugations on the shell (endocarp) surrounding the seed.\r\n\r\nThe fruit of the almond is a drupe, consisting of an outer hull and a hard shell with the seed, which is not a true nut, inside. Shelling almonds refers to removing the shell to reveal the seed. Almonds are sold shelled or unshelled. Blanched almonds are shelled almonds that have been treated with hot water to soften the seedcoat, which is then removed to reveal the white embryo.",
+                        "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678565046/xorc6zn6c7rqdqoqho1r.png"
                       },
-                      {
-                          "id": {
-                              "_id": "640c2dd963a319ea671e36d5",
-                              "name": "Flaked Almonds",
-                              "desc": "Sliced or chopped almonds commonly used in baking and as a topping for salads and desserts.",
-                              "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564798/ioewvib3w3mmdbbhp8ia.png"
-                          },
-                          "measure": "50g/1¾oz"
-                      }
+                      "measure": "1 tsp"
+                    },
+                    {
+                      "id": {
+                        "_id": "640c2dd963a319ea671e36d5",
+                        "name": "Flaked Almonds",
+                        "desc": "Sliced or chopped almonds commonly used in baking and as a topping for salads and desserts.",
+                        "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564798/ioewvib3w3mmdbbhp8ia.png"
+                      },
+                      "measure": "50g/1¾oz"
+                    }
                   ],
                   "popularity": 0,
                   "updatedAt": "2023-07-17T07:39:51.200Z"
-              }
+                }
               }
             }
           }
@@ -879,9 +869,7 @@
       "get": {
         "tags": ["Recipes"],
         "summary": "Getting favorite recipes created by the User",
-        "parameters": [
-         
-        ],
+        "parameters": [],
         "security": [{ "Bearer": [] }],
         "responses": {
           "200": {
@@ -906,88 +894,84 @@
                       "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560408/r9oh73shqwiso3t6cz7t.jpg",
                       "time": "50",
                       "youtube": "https://www.youtube.com/watch?v=rp8Slv4INLk",
-                      "tags": [
-                          "Tart",
-                          "Baking",
-                          "Fruity"
-                      ],
+                      "tags": ["Tart", "Baking", "Fruity"],
                       "ingredients": [
-                          {
-                              "id": {
-                                  "_id": "640c2dd963a319ea671e36c0",
-                                  "name": "Digestive Biscuits",
-                                  "desc": "A type of biscuit that originated in the United Kingdom. They are made with wholemeal flour and are lightly sweetened, making them a popular choice for use in pie crusts and as a base for cheesecakes and other desserts.",
-                                  "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564743/bo5tts3n5ebbtxlnrxft.png"
-                              },
-                              "measure": "175g/6oz"
+                        {
+                          "id": {
+                            "_id": "640c2dd963a319ea671e36c0",
+                            "name": "Digestive Biscuits",
+                            "desc": "A type of biscuit that originated in the United Kingdom. They are made with wholemeal flour and are lightly sweetened, making them a popular choice for use in pie crusts and as a base for cheesecakes and other desserts.",
+                            "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564743/bo5tts3n5ebbtxlnrxft.png"
                           },
-                          {
-                              "id": {
-                                  "_id": "640c2dd963a319ea671e367e",
-                                  "name": "Butter",
-                                  "desc": "A dairy product made from churning cream or milk, with a high fat content and a creamy, rich flavor that is often used in cooking and baking.",
-                                  "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564674/ovea5weymaecrnbwxuq9.png"
-                              },
-                              "measure": "75g/3oz"
+                          "measure": "175g/6oz"
+                        },
+                        {
+                          "id": {
+                            "_id": "640c2dd963a319ea671e367e",
+                            "name": "Butter",
+                            "desc": "A dairy product made from churning cream or milk, with a high fat content and a creamy, rich flavor that is often used in cooking and baking.",
+                            "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564674/ovea5weymaecrnbwxuq9.png"
                           },
-                          {
-                              "id": {
-                                  "_id": "640c2dd963a319ea671e3676",
-                                  "name": "Bramley Apples",
-                                  "desc": "A type of apple that is popular in the UK and Ireland, known for its tart flavor and firm texture, which makes it ideal for cooking and baking.",
-                                  "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564216/cmakgrcdewhz0utfsw6r.png"
-                              },
-                              "measure": "200g/7oz"
+                          "measure": "75g/3oz"
+                        },
+                        {
+                          "id": {
+                            "_id": "640c2dd963a319ea671e3676",
+                            "name": "Bramley Apples",
+                            "desc": "A type of apple that is popular in the UK and Ireland, known for its tart flavor and firm texture, which makes it ideal for cooking and baking.",
+                            "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564216/cmakgrcdewhz0utfsw6r.png"
                           },
-                          {
-                              "id": {
-                                  "_id": "640c2dd963a319ea671e3687",
-                                  "name": "Caster Sugar",
-                                  "desc": "A type of fine sugar that is commonly used in baking and cooking, with a fine texture that dissolves easily, and is often used in recipes that require quick mixing or dissolving, such as meringues, whipped cream, and cakes.",
-                                  "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564673/fbkmvnc8830ng9d8j6ld.png"
-                              },
-                              "measure": "75g/3oz"
+                          "measure": "200g/7oz"
+                        },
+                        {
+                          "id": {
+                            "_id": "640c2dd963a319ea671e3687",
+                            "name": "Caster Sugar",
+                            "desc": "A type of fine sugar that is commonly used in baking and cooking, with a fine texture that dissolves easily, and is often used in recipes that require quick mixing or dissolving, such as meringues, whipped cream, and cakes.",
+                            "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564673/fbkmvnc8830ng9d8j6ld.png"
                           },
-                          {
-                              "id": {
-                                  "_id": "640c2dd963a319ea671e36db",
-                                  "name": "Free-range Eggs, Beaten",
-                                  "desc": "Chicken eggs from free-range chickens that have been whisked together until the whites and yolks are fully mixed.",
-                                  "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564797/vgrkykfsutx3tgdpcfsp.png"
-                              },
-                              "measure": "2"
+                          "measure": "75g/3oz"
+                        },
+                        {
+                          "id": {
+                            "_id": "640c2dd963a319ea671e36db",
+                            "name": "Free-range Eggs, Beaten",
+                            "desc": "Chicken eggs from free-range chickens that have been whisked together until the whites and yolks are fully mixed.",
+                            "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564797/vgrkykfsutx3tgdpcfsp.png"
                           },
-                          {
-                              "id": {
-                                  "_id": "640c2dd963a319ea671e36f6",
-                                  "name": "Ground Almonds",
-                                  "desc": "Ground almonds are finely powdered almonds that can be used as a gluten-free alternative to wheat flour in baking or as a topping for dishes like oatmeal or yogurt.",
-                                  "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564798/utvplhpheg7fn1mev30k.png"
-                              },
-                              "measure": "75g/3oz"
+                          "measure": "2"
+                        },
+                        {
+                          "id": {
+                            "_id": "640c2dd963a319ea671e36f6",
+                            "name": "Ground Almonds",
+                            "desc": "Ground almonds are finely powdered almonds that can be used as a gluten-free alternative to wheat flour in baking or as a topping for dishes like oatmeal or yogurt.",
+                            "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564798/utvplhpheg7fn1mev30k.png"
                           },
-                          {
-                              "id": {
-                                  "_id": "640c2dd963a319ea671e3861",
-                                  "name": "Almond Extract",
-                                  "desc": "The almond (Prunus dulcis, syn. Prunus amygdalus) is a species of tree native to Mediterranean climate regions of the Middle East, but widely cultivated elsewhere. The almond is also the name of the edible and widely cultivated seed of this tree. Within the genus Prunus, it is classified with the peach in the subgenus Amygdalus, distinguished from the other subgenera by corrugations on the shell (endocarp) surrounding the seed.\r\n\r\nThe fruit of the almond is a drupe, consisting of an outer hull and a hard shell with the seed, which is not a true nut, inside. Shelling almonds refers to removing the shell to reveal the seed. Almonds are sold shelled or unshelled. Blanched almonds are shelled almonds that have been treated with hot water to soften the seedcoat, which is then removed to reveal the white embryo.",
-                                  "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678565046/xorc6zn6c7rqdqoqho1r.png"
-                              },
-                              "measure": "1 tsp"
+                          "measure": "75g/3oz"
+                        },
+                        {
+                          "id": {
+                            "_id": "640c2dd963a319ea671e3861",
+                            "name": "Almond Extract",
+                            "desc": "The almond (Prunus dulcis, syn. Prunus amygdalus) is a species of tree native to Mediterranean climate regions of the Middle East, but widely cultivated elsewhere. The almond is also the name of the edible and widely cultivated seed of this tree. Within the genus Prunus, it is classified with the peach in the subgenus Amygdalus, distinguished from the other subgenera by corrugations on the shell (endocarp) surrounding the seed.\r\n\r\nThe fruit of the almond is a drupe, consisting of an outer hull and a hard shell with the seed, which is not a true nut, inside. Shelling almonds refers to removing the shell to reveal the seed. Almonds are sold shelled or unshelled. Blanched almonds are shelled almonds that have been treated with hot water to soften the seedcoat, which is then removed to reveal the white embryo.",
+                            "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678565046/xorc6zn6c7rqdqoqho1r.png"
                           },
-                          {
-                              "id": {
-                                  "_id": "640c2dd963a319ea671e36d5",
-                                  "name": "Flaked Almonds",
-                                  "desc": "Sliced or chopped almonds commonly used in baking and as a topping for salads and desserts.",
-                                  "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564798/ioewvib3w3mmdbbhp8ia.png"
-                              },
-                              "measure": "50g/1¾oz"
-                          }
+                          "measure": "1 tsp"
+                        },
+                        {
+                          "id": {
+                            "_id": "640c2dd963a319ea671e36d5",
+                            "name": "Flaked Almonds",
+                            "desc": "Sliced or chopped almonds commonly used in baking and as a topping for salads and desserts.",
+                            "img": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564798/ioewvib3w3mmdbbhp8ia.png"
+                          },
+                          "measure": "50g/1¾oz"
+                        }
                       ],
                       "popularity": 0,
                       "updatedAt": "2023-07-17T07:39:51.200Z"
-                  }
+                    }
                   ]
                 }
               }
@@ -1155,25 +1139,22 @@
         "security": [{ "Bearer": [] }],
         "requestBody": {
           "description": "Recipe's object",
-          
           "content": {
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/RecipeRequest"
+                "$ref": "#/components/schemas/OwnRecipeRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OwnRecipeRequest"
               }
             }
           }
         },
         "responses": {
           "201": {
-            "description": "Recipe added successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RecipeResponse"
-                }
-              }
-            }
+            "description": "Recipe created successfully"
           },
           "401": {
             "description": "Not authorized",
@@ -1557,119 +1538,187 @@
             "description": "Recipe popularity"
           }
         }
-      }
-    },
-    "IngredientsListResponse": {
-      "type": "array",
-      "items": {
+      },
+      "OwnRecipeRequest": {
         "type": "object",
         "properties": {
-          "name": {
+          "title": { "type": "string" },
+          "category": {
             "type": "string",
-            "description": "Name of ingredient",
-            "example": "Potato"
+            "enum": [
+              "Beef",
+              "Breakfast",
+              "Chicken",
+              "Dessert",
+              "Goat",
+              "Lamb",
+              "Miscellaneous",
+              "Pasta",
+              "Pork",
+              "Seafood",
+              "Side",
+              "Starter",
+              "Vegan",
+              "Vegetarian"
+            ]
           },
-          "desc": {
-            "type": "string",
-            "description": "Description of ingredient",
-            "example": ""
+          "area": { "type": "string" },
+          "instructions": { "type": "string" },
+          "description": { "type": "string" },
+          "time": { "type": "string" },
+          "ingredients": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "measure": { "type": "string" }
+              }
+            }
           },
-          "img": {
-            "type": "string",
-            "description": "URL of ingredient's image",
-            "example": "https://res.cloudinary.com/***********"
+          "thumb": { "type": "string" },
+          "preview": {
+            "type": "object",
+            "properties": {
+              "fieldname": { "type": "string" },
+              "originalname": { "type": "string" },
+              "encoding": { "type": "string" },
+              "mimetype": { "type": "string" },
+              "destination": { "type": "string" },
+              "filename": { "type": "string" },
+              "path": { "type": "string" },
+              "size": { "type": "number" }
+            }
+          },
+          "youtube": { "type": "string" },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "popularity": { "type": "number" }
+        },
+        "required": [
+          "title",
+          "category",
+          "instructions",
+          "description",
+          "time",
+          "ingredients",
+          "preview"
+        ]
+      },
+      "IngredientsListResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of ingredient",
+              "example": "Potato"
+            },
+            "desc": {
+              "type": "string",
+              "description": "Description of ingredient",
+              "example": ""
+            },
+            "img": {
+              "type": "string",
+              "description": "URL of ingredient's image",
+              "example": "https://res.cloudinary.com/***********"
+            }
           }
         }
-      }
-    },
-    "productsResponse": {
-      "type": "object",
-      "properties": {
-        "title": {
-          "type": "string",
-          "description": "Title of product",
-          "format": "text",
-          "example": "Title"
-        },
-        "quantity": {
-          "type": "string",
-          "description": "Quantity of product",
-          "format": "text",
-          "example": "7"
-        },
-        "user": {
-          "type": "string",
-          "description": "User's id",
-          "example": "589b43b898vc19791795e093"
-        },
-        "thumb": {
-          "type": "string",
-          "description": "URL of product's image",
-          "format": "text",
-          "example": "https://res.cloudinary.com/***********"
-        }
-      }
-    },
-    "addProductRequest": {
-      "type": "array",
-      "items": {
+      },
+      "productsResponse": {
         "type": "object",
         "properties": {
           "title": {
             "type": "string",
             "description": "Title of product",
-            "format": "text"
+            "format": "text",
+            "example": "Title"
           },
           "quantity": {
             "type": "string",
             "description": "Quantity of product",
-            "format": "text"
+            "format": "text",
+            "example": "7"
+          },
+          "user": {
+            "type": "string",
+            "description": "User's id",
+            "example": "589b43b898vc19791795e093"
           },
           "thumb": {
             "type": "string",
             "description": "URL of product's image",
-            "format": "text"
+            "format": "text",
+            "example": "https://res.cloudinary.com/***********"
           }
         }
       },
-      "example": [
-        {
-          "title": "Title1",
-          "quantity": "1",
-          "thumb": "https://res.cloudinary.com/***********"
+      "addProductRequest": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "Title of product",
+              "format": "text"
+            },
+            "quantity": {
+              "type": "string",
+              "description": "Quantity of product",
+              "format": "text"
+            },
+            "thumb": {
+              "type": "string",
+              "description": "URL of product's image",
+              "format": "text"
+            }
+          }
         },
-        {
-          "title": "Title2",
-          "quantity": "2",
-          "thumb": "https://res.cloudinary.com/***********"
+        "example": [
+          {
+            "title": "Title1",
+            "quantity": "1",
+            "thumb": "https://res.cloudinary.com/***********"
+          },
+          {
+            "title": "Title2",
+            "quantity": "2",
+            "thumb": "https://res.cloudinary.com/***********"
+          }
+        ]
+      },
+      "addProductResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Success message",
+            "example": "Product added successful"
+          }
         }
-      ]
-    },
-    "addProductResponse": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string",
-          "description": "Success message",
-          "example": "Product added successful"
+      },
+      "deleteProductResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Success message",
+            "example": "Product deleted successful"
+          }
         }
-      }
-    },
-    "deleteProductResponse": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string",
-          "description": "Success message",
-          "example": "Product deleted successful"
+      },
+      "securitySchemes": {
+        "Bearer": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
         }
-      }
-    },
-    "securitySchemes": {
-      "Bearer": {
-        "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
       }
     }
   }
