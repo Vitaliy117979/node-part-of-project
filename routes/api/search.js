@@ -3,10 +3,11 @@ const { authenticate } = require("../../middleware");
 const { searchByTitle,  searchByIngredient, searchIngredients} = require("../../controllers");
 
 const router = express.Router();
+router.use(authenticate);
 
-router.get("/", authenticate, searchByTitle);
-router.get("/byIngredients", authenticate, searchByIngredient);
-router.get("/ingredients", authenticate, searchIngredients);
+router.get("/", searchByTitle);
+router.get("/byIngredients", searchByIngredient);
+router.get("/ingredients", searchIngredients);
 
 
 
