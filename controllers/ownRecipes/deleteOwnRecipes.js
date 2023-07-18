@@ -7,7 +7,10 @@ const deleteOwnRecipes = async (req, res, next) => {
   if (!recipe) {
     return next(HttpError(404, "Recipe not found"));
   }
-  if (recipe.createdBy !== req.user._id) {
+  console.log(recipe.createdBy);
+  console.log(req.user._id);
+
+  if (recipe.createdBy.toString() !== req.user._id.toString()) {
     throw HttpError(403, "You are not authorized to delete this recipe");
   }
 
