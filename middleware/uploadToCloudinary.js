@@ -37,10 +37,7 @@ const uploadFile = async (fieldname, originalname) => {
     allowed_formats: ["jpg", "png"],
     chunk_size: 6000000,
     public_id: originalname,
-    transformation: [
-      { width: 350, height: 350 },
-      { width: 700, height: 700 },
-    ],
+    transformation: [],
   };
 
   const result = await uploadFileToCloudinary(filePath, options);
