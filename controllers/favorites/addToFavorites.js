@@ -21,7 +21,7 @@ const addToFavorites = async (req, res, next) => {
     const result = await Recipe.find({ _id: { $in: favoritesArray } }).populate(
       "ingredients.id"
     )
-    res.status(200).json(result);
+    res.status(201).json(result);
   }
 };
 

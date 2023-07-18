@@ -14,9 +14,14 @@ if (req.user.favorites.length === 0) {
       { new: true }
     );
     
-    await Recipe.findByIdAndUpdate(recipeId, { $inc: { popularity: -1 } });
+    const recipe = await Recipe.findById(recipeId);
+    if (recipe && recipe.popularity > 0) {
+      console.log(1);
+      await Recipe.findByIdAndUpdate(recipeId, { $inc: { popularity: -1 } });
+    }
 
-    res.status(200).json({ message: "Recipe removed from favorites successfully", user });
+
+    res.status(201).json({ message: "Recipe removed from favorites successfully" });
   } catch (error) {
     next(error);
   }

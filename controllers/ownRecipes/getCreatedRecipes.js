@@ -7,7 +7,7 @@ const getCreatedRecipes = async (req, res, next) => {
 
     if (recipes.length === 0) {
       return res
-        .status(200)
+        .status(404)
         .json({ message: "No recipes have been created yet" });
     }
 
