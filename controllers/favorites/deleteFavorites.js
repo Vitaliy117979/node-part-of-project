@@ -2,7 +2,7 @@ const User = require("../../models/user");
 const Recipe = require("../../models/recipe");
 
 const deleteFavorites = async (req, res, next) => {
-  try {
+
     const userId = req.user._id;
     const recipeId = req.params.recipeId;
 if (req.user.favorites.length === 0) {
@@ -22,9 +22,7 @@ if (req.user.favorites.length === 0) {
 
 
     res.status(201).json({ message: "Recipe removed from favorites successfully" });
-  } catch (error) {
-    next(error);
-  }
+
 };
 
 module.exports = { deleteFavorites };

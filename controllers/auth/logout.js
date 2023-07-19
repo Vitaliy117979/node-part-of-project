@@ -6,7 +6,7 @@ const logout = async(req, res, next) => {
 
     const user = await User.findById(id);
   
-    if (!user) throw HttpError(401);
+    if (!user) throw HttpError(401, "This user does not exist");
   
     await User.findByIdAndUpdate(id, { token: "" });
     res.status(204).send();
