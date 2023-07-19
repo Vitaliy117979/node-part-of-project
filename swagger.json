@@ -1250,7 +1250,7 @@
         }
       }
     },
-    "/api/shopping-list/{id}": {
+    "/shopping-list/{id}": {
       "delete": {
         "tags": ["ShoppingList"],
         "summary": "Delete product from shopping list",
