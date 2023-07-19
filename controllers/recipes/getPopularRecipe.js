@@ -1,6 +1,5 @@
 const Recipe = require("../../models/recipe");
 const { Ingredient } = require("../../models/ingredient");
-// імпортувати в файл модель Ingredient
 console.log(Recipe);
 async function getPopularRecipe(req, res) {
   const { page = 1, limit = 8 } = req.query;

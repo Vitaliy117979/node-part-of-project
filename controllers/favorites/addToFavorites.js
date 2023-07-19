@@ -4,7 +4,6 @@ const Recipe = require("../../models/recipe");
 const addToFavorites = async (req, res, next) => {
   const recipeId = req.body._id;
   const userId = req.user._id;
-  // console.log(recipeId);
   if (req.user.favorites.includes(recipeId)) {
     return res
       .status(409)

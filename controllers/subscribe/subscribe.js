@@ -9,7 +9,7 @@ const updateSubscription = async (req, res) => {
   await User.findByIdAndUpdate(_id, { subscription }, { new: true });
   res.json({ subscription });
 
-  try {
+ 
     const subscribedEmail = { to: email };
     if (subscription === "subscribe") {
       subscribedEmail.subject = "You are subscribed to our api";
@@ -22,9 +22,7 @@ const updateSubscription = async (req, res) => {
     }
 
     await sendEmail(subscribedEmail);
-  } catch (error) {
-    console.error(error);
-  }
+
 };
 
 module.exports = { updateSubscription };

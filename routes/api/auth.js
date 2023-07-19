@@ -18,6 +18,7 @@ router.patch(
   "/update",
   authenticate,
   upload.single("avatarURL"),
+  validate(schemas.updateUserSchema),
   updateUserInformation
 );
 
