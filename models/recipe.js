@@ -56,7 +56,6 @@ const recipeSchema = new Schema(
     },
     preview: {
       type: String,
-      required: true,
     },
     youtube: {
       type: String,

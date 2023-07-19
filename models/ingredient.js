@@ -12,7 +12,6 @@ const ingredientSchema = Schema(
     },
     img: {
       type: String,
-      required: true,
     },
   },
   { timestamps: true }
