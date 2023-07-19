@@ -5,7 +5,7 @@ const buyIngredientSchema = Joi.object({
   newId: Joi.string().length(24).required(),
   name: Joi.string().required(),
   desc: Joi.string().required(),
-  img: Joi.string().required(),
+  img: Joi.string(),
   measure: Joi.string().required(), 
 });
 
