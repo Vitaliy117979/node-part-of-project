@@ -42,7 +42,7 @@ const ownRecipeSchema = Joi.object({
     filename: Joi.string().required(),
     path: Joi.string().required(),
     size: Joi.number().required(),
-  }).required(),
+  }),
   youtube: Joi.string(),
   tags: Joi.array().items(Joi.string()),
   popularity: Joi.number(),
