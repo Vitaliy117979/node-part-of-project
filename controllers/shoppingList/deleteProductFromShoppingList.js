@@ -12,7 +12,7 @@ const deleteProductFromShoppingList = async (req, res) => {
       throw HttpError(404, "Product not found in Shopping List");
     }
 
-    res.json(result);
+    res.status(201).json("The product has been successfully removed");
   } catch (error) {
     console.error("Error deleting product from Shopping List:", error);
     res.status(error.statusCode || 500).json({ error: error.message || "Internal Server Error" });
