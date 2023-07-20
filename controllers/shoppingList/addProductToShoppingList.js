@@ -1,19 +1,16 @@
-const Product = require("../../models/product");
+const User = require("../../models/user");
 
 const addProductToShoppingList = async (req, res) => {
   const { _id: owner } = req.user;
-  const { name, desc, img, measure, newId } = req.body;
+  const { measure, _id: id, newId } = req.body;
   console.log(req.body);
-  const ingredients = await Product.create({
-    name,
-    desc,
-    img,
-    measure,
-    owner: owner,
-    newId
-  });
-
-  console.log(ingredients);
+  const ingredients = await User.findByIdAndUpdate(
+    owner,
+    {
+      $push: { shoppingList: { id, newId, measure } },
+    },
+    { new: true }
+  );
 
   res.status(201).json(ingredients);
 };

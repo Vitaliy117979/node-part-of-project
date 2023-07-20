@@ -14,7 +14,6 @@ const userSchema = new Schema(
     name: {
       type: String,
       required: [true, "Name is required"],
-
     },
     subscription: {
       type: String,
@@ -23,21 +22,45 @@ const userSchema = new Schema(
     },
     favorites: {
       type: [
-         {
+        {
           type: Schema.Types.ObjectId,
           ref: "Recipe",
         },
       ],
       required: true,
     },
+    shoppingList: {
+      type: [
+        {
+          _id: false,
+         id: {
+            type: String,
+          ref: "Ingredient",
+          required: true,
+
+          },
+          newId: {
+            type: String,
+      required: true,
+
+          },
+          measure: {
+            type: String,
+      required: true,
+
+          },
+        },
+      ],
+    },
     avatarURL: String,
     token: String,
   },
-  { versionKey: false, timestamps: true }
+  { versionKey: false, timestamps: true },
+  { usePushEach: true }
 );
 
-userSchema.post("save", handleMongooseError)
+userSchema.post("save", handleMongooseError);
 
-const User = model("User", userSchema)
+const User = model("User", userSchema);
 
-module.exports = User
+module.exports = User;
