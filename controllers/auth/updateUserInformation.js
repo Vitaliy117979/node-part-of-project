@@ -27,6 +27,8 @@ const updateUserInformation = async (req, res, next) => {
     massage: "Your data has been updated successfully",
       name: updates.name,
       avatarURL: updates.avatarURL,
+      email,
+
     });
   }
 
