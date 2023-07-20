@@ -5,7 +5,7 @@ const addProductToShoppingList = async (req, res) => {
   const { measure, _id: id, newId } = req.body;
   const newItemExists = req.user.shoppingList.find((item) => item.newId === newId);
   if (newItemExists) {
-  res.status(409).json("this product has already been added to your shopping list");
+  res.status(409).json("This product has already been added to your shopping list");
   }
   const ingredients = await User.findByIdAndUpdate(
     owner,

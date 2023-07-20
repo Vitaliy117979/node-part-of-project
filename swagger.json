@@ -75,8 +75,16 @@
             "description": "missing fields",
             "content": {}
           },
+          "401": {
+            "description": "missing fields",
+            "content": {}
+          },
           "409": {
             "description": "Provided email already exists",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
             "content": {}
           }
         }
@@ -115,6 +123,10 @@
           "401": {
             "description": "Unauthorized (email or password is wrong)",
             "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
           }
         }
       }
@@ -137,6 +149,10 @@
           "401": {
             "description": "Not authorized",
             "content": {}
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
           }
         }
       }
@@ -150,6 +166,10 @@
           "204": {},
           "401": {
             "description": "Not authorized"
+          },
+          "500": {
+            "description": "Server error",
+            "content": {}
           }
         }
       }
@@ -183,17 +203,46 @@
             }
           },
           "400": {
-            "description": "Name field cannot be empty. or File size exceeds the limit. or Missing fields.",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserUpdateError"
-                }
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string",
+                        "description": "Name field cannot be empty"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string",
+                        "description": "File size exceeds the limit"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string",
+                        "description": " Missing fields"
+                      }
+                    }
+                  }
+                ]
               }
             }
           },
           "401": {
             "description": "Not authorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
             "content": {}
           }
         }
@@ -227,8 +276,16 @@
               }
             }
           },
-          "400": {
+          "404": {
             "description": "Unsuccessful request",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
             "content": {}
           }
         }
@@ -293,12 +350,16 @@
               }
             }
           },
-          "400": {
+          "404": {
             "description": "No search keyword specified",
             "content": {}
           },
           "401": {
             "description": "Not authorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
             "content": {}
           }
         }
@@ -363,12 +424,16 @@
               }
             }
           },
-          "400": {
-            "description": "No search keyword specified",
+          "404": {
+            "description": "No ingredient name specified",
             "content": {}
           },
           "401": {
             "description": "Not authorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
             "content": {}
           }
         }
@@ -439,6 +504,10 @@
           },
           "401": {
             "description": "Not authorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error",
             "content": {}
           }
         }
@@ -619,8 +688,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not found",
+          "400": {
+            "description": "Category cannot be empty",
             "content": {}
           },
           "401": {
@@ -666,7 +735,7 @@
             }
           },
           "404": {
-            "description": "Not found",
+            "description": "The recipe does not exist",
             "content": {}
           },
           "401": {
@@ -1059,6 +1128,10 @@
               }
             }
           },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
           "500": {
             "description": "Server problems",
             "content": {}
@@ -1071,11 +1144,8 @@
         "tags": ["ShoppingList"],
         "summary": "Get all products from shopping list",
         "parameters": [],
-        "security": [
-          {
-            "Bearer": []
-          }
-        ],
+        "security": [{ "Bearer": [] }],
+
         "responses": {
           "200": {
             "description": "Get all products successful",
@@ -1086,6 +1156,14 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "500": {
+            "description": "Server problems",
+            "content": {}
           }
         }
       },
@@ -1122,6 +1200,10 @@
           },
           "401": {
             "description": "Not authorized",
+            "content": {}
+          },
+          "409": {
+            "description": "This product has already added to your shopping list",
             "content": {}
           },
           "500": {
@@ -1263,7 +1345,7 @@
               "type": "string"
             },
             "description": "Product's id",
-            "example": "589b43b898vc19791795e093"
+            "example": "589b43b898vc19791795e093589b43b898vc19791795e093"
           }
         ],
         "security": [
@@ -1272,8 +1354,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "Product deleted successful",
+          "201": {
+            "description": "The product deleted has been successfully removed",
             "content": {
               "application/json": {
                 "schema": {
@@ -1282,14 +1364,24 @@
               }
             }
           },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
           "404": {
-            "description": "Product not found",
+            "description": "Product not found in Shopping List",
+            "content": {}
+          },
+
+          "500": {
+            "description": "Failed to fetch own recipes",
             "content": {}
           }
         }
       }
     }
   },
+
   "components": {
     "schemas": {
       "RegisterSchema": {
@@ -1333,6 +1425,11 @@
                 "type": "string",
                 "description": "User's name",
                 "example": "Bogdan"
+              },
+              "avatarURL": {
+                "type": "string",
+                "description": "User's avatar",
+                "example": "Bogdan"
               }
             }
           }
@@ -1371,13 +1468,14 @@
       },
       "updateUser": {
         "type": "object",
-        "required": ["name"],
+        "required": [],
         "properties": {
           "name": {
             "type": "string",
             "description": "User's name",
             "example": "Mango"
           },
+
           "avatarURL": {
             "type": "string",
             "format": "binary",
@@ -1392,6 +1490,11 @@
             "type": "string",
             "description": "User's name",
             "example": "Mango"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
           },
           "avatarURL": {
             "type": "string",
@@ -1421,6 +1524,12 @@
                 "type": "string",
                 "description": "User's name",
                 "example": "Bogdan"
+              },
+              "avatarURL": {
+                "type": "string",
+                "format": "binary",
+                "contentMediaType": "image/jpeg",
+                "description": "User's avatar"
               }
             }
           }
@@ -1712,13 +1821,13 @@
             "example": "Product deleted successful"
           }
         }
-      },
-      "securitySchemes": {
-        "Bearer": {
-          "type": "http",
-          "scheme": "bearer",
-          "bearerFormat": "JWT"
-        }
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }
