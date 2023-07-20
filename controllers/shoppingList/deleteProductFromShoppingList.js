@@ -1,18 +1,22 @@
-const  Product  = require("../../models/product");
+const User = require("../../models/user");
 const { HttpError } = require("../../helpers");
 
 const deleteProductFromShoppingList = async (req, res) => {
   const { id: newId } = req.params;
-  const {_id: owner} = req.user
-  const result = await Product.deleteOne({newId, owner});
-  console.log(result);
+  const { _id: user } = req.user;
 
-  if (result.deletedCount === 0) {
-    throw HttpError(404, "Product not found in Shopping List");
+  try {
+    const result = await User.findByIdAndUpdate(user, { $pull: { shoppingList: { newId } } }, { new: true});
+
+    if (!result) {
+      throw HttpError(404, "Product not found in Shopping List");
+    }
+
+    res.json(result);
+  } catch (error) {
+    console.error("Error deleting product from Shopping List:", error);
+    res.status(error.statusCode || 500).json({ error: error.message || "Internal Server Error" });
   }
-
-  res.json({ message: "Product delete successfully from Shopping List" });
 };
-
 
 module.exports = deleteProductFromShoppingList;
