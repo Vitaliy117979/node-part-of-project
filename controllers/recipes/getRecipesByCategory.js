@@ -11,7 +11,7 @@ async function getRecipesByCategory(req, res) {
     { category: { $regex: category, $options: "i" } },
     null,
     { limit }
-    ).populate("ingredients.id");
+    ).populate("ingredients.id").sort({ "updatedAt": -1 })
   if (list.length === 0) {
    return res.status(400).json({ massage: "This category does not exist" });
   }
